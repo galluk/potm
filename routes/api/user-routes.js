@@ -147,7 +147,9 @@ router.get('/api/gamevotes/:id', (req, res) => {
 // ************************** PLAYERS routes **************************
 router.get('/api/players/:id', (req, res) => {
     db.Player.findById(mongoose.Types.ObjectId(`${req.params.id}`))
+        // db.Player.findById(req.params.id)
         .then((response) => {
+            console.log(response);
             res.json(response);
         })
         .catch((err) => {
@@ -155,31 +157,32 @@ router.get('/api/players/:id', (req, res) => {
         });
 });
 
+// return all the games that the current logged in userId can vote on
 router.get('/api/usergames/:id', (req, res) => {
     console.log(req.params.id);
-    //db.Player.findById(mongoose.Types.ObjectId(`${req.params.id}`))
+    // first get the player ids associated with this user
     db.Player.find({ userId: mongoose.Types.ObjectId(`${req.params.id}`) })
         .then((dbPlayers) => {
+            console.log(dbPlayers);
+            // get the teamIds that this player is in
             let team_ids = dbPlayers.map(function (player) {
                 return mongoose.Types.ObjectId(player.teamId);
             });
             console.log(team_ids);
-            db.Game.find({ teamId: { '$in': team_ids }, votingOpen: true }).
-                then((dbGames) => {
+            // get the games that are open for voting for the given teamids
+            db.Game.find({ teamId: { $in: team_ids }, votingOpen: true })
+                .then((dbGames) => {
                     // have the teams associated with this user, now get the games they can vote on
                     console.log(dbGames);
-                    // db.Game.find({ teamId: mongoose.Types.ObjectId(`${dbTeam._id}`), votingOpen: true }).then((dbGames) => {
-                    //     console.log(dbGames);
-                    // });
                     res.json(dbGames);
                 })
                 .catch((err) => {
                     res.json(err);
                 });
+        })
         .catch((err) => {
             res.json(err);
         });
-    });
 });
 
 module.exports = router;

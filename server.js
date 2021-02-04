@@ -35,7 +35,7 @@ app.use(express.static('public'));
 mongoose
     .connect(
         process.env.MONGODB_URI ||
-            `mongodb+srv://mongoLG:${encodeURIComponent(process.env.REACT_APP_DB_PASS)}@cluster0.xoyrx.mongodb.net/googlebooks`,
+            `mongodb+srv://mongoLG:${encodeURIComponent(process.env.REACT_APP_DB_PASS)}@cluster0.xoyrx.mongodb.net/playervoting`,
         {
             useNewUrlParser: true,
             useUnifiedTopology: true,

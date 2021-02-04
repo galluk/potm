@@ -38,8 +38,29 @@ function Navbar() {
                 </Link>
             </li>
             <li>
+                <Link
+                    to="/jointeam"
+                    className={window.location.pathname === "/jointeam" ? "nav-link active" : "nav-link"}>
+                    Join
+                </Link>
+            </li>
+            <li>
                 <Link className="mb-1 mr-1 btn btn-sm active" to="/dashboard">
                     Dashboard
+                </Link>
+            </li>
+            <li>
+                <Link
+                    to="/entervotes"
+                    className={window.location.pathname === "/entervotes" ? "nav-link active" : "nav-link"}>
+                    Vote
+                </Link>
+            </li>
+            <li>
+                <Link
+                    to="/managegames"
+                    className={window.location.pathname === "/managegames" ? "nav-link active" : "nav-link"}>
+                    Manage Games
                 </Link>
             </li>
             <li>

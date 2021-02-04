@@ -8,6 +8,7 @@ import Login from './components/Login/Login';
 import Dashboard from './components/pages/Dashboard/Dashboard';
 import Other from './components/pages/Other/Other';
 import Profile from './components/Profile/Profile';
+import ManageGames from './components/pages/ManageGames';
 import StartUp from './components/pages/StartUp/StartUp';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AppContextProvider } from './store';
@@ -25,6 +26,7 @@ function App() {
                     <div className="p-0 m-0 container-fluid">
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/login" component={Login} />
+                        <Route exact path="/managegames" component={ManageGames} />
                         <Route exact path="/profile" component={Profile} />
                         <Route exact path="/dashboard" component={Auth(Dashboard)} />
                         <Route exact path="/other" component={Other} />
