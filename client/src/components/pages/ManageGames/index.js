@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Jumbotron from "../../Jumbotron";
-import { Col, Row, Container } from "../../Grid";
+// import { getTeamGames } from '../../utils/userFunctions';
 import AddGame from "../../AddGame";
+import ImportGames from "../../ImportGames";
 import Games from "../../Games";
 import Button from 'react-bootstrap/Button';
+import { Col, Row, Container } from "../../Grid";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ManageGames(props) {
@@ -11,12 +13,18 @@ function ManageGames(props) {
     const [games, setGames] = useState([{ _id: '123456', round: 1, gameDate: '20201-02-18', opposition: 'the enemy', votingOpen: false }])
 
     const [showAddGame, setShowAddGame] = useState(false)
+    const [showImportGames, setShowImportGames] = useState(false)
 
-    // // import csv file of games
-    function importGames() {
-        // show import form
-        alert('Show import games form...')
+    // import csv file of games
+    function importGames(filename) {
+        alert('Importing ' + filename)
+        setShowImportGames(false)
     }
+
+    function showImportGamesForm() {
+        setShowImportGames(true)
+    }
+
 
     // // delete selected game
     function deleteGame(gameId) {
@@ -66,7 +74,10 @@ function ManageGames(props) {
                 </Col>
                 <Col size="md-6 sm-8">
                     <div>
-                        <Button variant="outline-primary" className="float-right" onClick={() => importGames()}>Import</Button>
+                        {showImportGames && <ImportGames onImport={importGames} />}
+                    </div>
+                    <div>
+                        <Button variant="outline-primary" className="float-right" onClick={showImportGamesForm}>Import</Button>
                         <Button color={showAddGame ? 'red' : 'green'} text={showAddGame ? 'Close' : 'Add'} onClick={showGameForm}>Add</Button>
                     </div>
                     <div>
