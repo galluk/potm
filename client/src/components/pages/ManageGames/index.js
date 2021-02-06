@@ -83,7 +83,7 @@ function ManageGames(props) {
                             <Games games={games} onDelete={deleteGame} onEdit={editGame} onOpenVoting={openVoting} />
                         ) : (
                                 <h5>There are no games associated with this team.</h5>
-                            )}
+                        )}
                     </div>
                 </Col>
             </Row>

@@ -7,10 +7,11 @@ function Register(props) {
     const history = useHistory();
 
     const [registerState, setRegisterState] = useState({
-        first_name: '',
-        last_name: '',
+        firstName: '',
+        lastName: '',
         email: '',
         password: '',
+        teamAdmin: false,
         errors: {},
         formIsValid: true,
     });
@@ -29,10 +30,11 @@ function Register(props) {
         handleValidation();
         event.preventDefault();
         const userData = {
-            first_name: registerState.first_name,
-            last_name: registerState.last_name,
+            firstName: registerState.firstName,
+            lastName: registerState.lastName,
             email: registerState.email,
             password: registerState.password,
+            teamAdmin: registerState.teamAdmin,
         };
         if (registerState.formIsValid) {
             getUsers().then((data) => {
@@ -64,27 +66,27 @@ function Register(props) {
                             <label htmlFor="first_name">First Name</label>
                             <input
                                 type="text"
-                                refs="first_name"
+                                refs="firstName"
                                 className="form-control"
-                                name="first_name"
+                                name="firstName"
                                 placeholder="Enter First Name"
-                                value={registerState.first_name}
+                                value={registerState.firstName}
                                 onChange={onChange}
                             />
-                            <span style={{ color: 'red' }}>{registerState.errors['first_name']}</span>
+                            <span style={{ color: 'red' }}>{registerState.errors['firstName']}</span>
                         </div>
                         <div className="form-group">
                             <label htmlFor="last_name">Last Name</label>
                             <input
                                 type="text"
-                                refs="last_name"
+                                refs="lastName"
                                 className="form-control"
-                                name="last_name"
+                                name="lastName"
                                 placeholder="Enter Last Name"
-                                value={registerState.last_name}
+                                value={registerState.lastName}
                                 onChange={onChange}
                             />
-                            <span style={{ color: 'red' }}>{registerState.errors['last_name']}</span>
+                            <span style={{ color: 'red' }}>{registerState.errors['lastName']}</span>
                         </div>
                         <div className="form-group">
                             <label htmlFor="email">Email Address</label>
@@ -111,6 +113,19 @@ function Register(props) {
                                 onChange={onChange}
                             />
                             <span style={{ color: 'red' }}>{registerState.errors['password']}</span>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="teamAdmin">Team Admin</label>
+                            <input
+                                type="checkbox"
+                                refs="teamAdmin"
+                                className="form-control"
+                                name="teamAdmin"
+                                // placeholder="Enter Password"
+                                value={registerState.teamAdmin}
+                                onChange={onChange}
+                            />
+                            <span style={{ color: 'red' }}>{registerState.errors['teamAdmin']}</span>
                         </div>
                         <button type="submit" className="btn btn-lg btn-primary btn-block">
                             Register

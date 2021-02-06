@@ -38,9 +38,7 @@ function Navbar() {
                 </Link>
             </li>
             <li>
-                <Link
-                    to="/jointeam"
-                    className={window.location.pathname === "/jointeam" ? "nav-link active" : "nav-link"}>
+                <Link className="mb-1 mr-1 btn btn-sm active" to="/jointeam">
                     Join
                 </Link>
             </li>
@@ -50,16 +48,17 @@ function Navbar() {
                 </Link>
             </li>
             <li>
-                <Link
-                    to="/entervotes"
-                    className={window.location.pathname === "/entervotes" ? "nav-link active" : "nav-link"}>
+                <Link className= "mb-1 mr-1 btn btn-sm active" to="/votingames">
                     Vote
                 </Link>
             </li>
+            {/* <li>
+                <Link className= "mb-1 mr-1 btn btn-sm active" to="/entervotes">
+                    Vote
+                </Link>
+            </li> */}
             <li>
-                <Link
-                    to="/managegames"
-                    className={window.location.pathname === "/managegames" ? "nav-link active" : "nav-link"}>
+                <Link className= "mb-1 mr-1 btn btn-sm active" to="/managegames">
                     Manage Games
                 </Link>
             </li>

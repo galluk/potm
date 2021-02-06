@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import Jumbotron from "../components/Jumbotron";
-import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
-import { Input, FormBtn } from "../components/Form";
+import { Col, Row, Container } from "../Grid";
+import { List, ListItem } from "../List";
+import { Input, FormBtn } from "../Form";
 
 // props has game id, playerid of the player casting votes and an array of players in the team
-function EnterVotes(props) {
+function EnterVotes({ game, onEnterVotes}) {
     // const [players, setPlayers] = useState([])
     const players = [{ firstName: "Player1" }, { firstName: "Player2" }, { firstName: "Player3" }, { firstName: "Player4" }]
 
@@ -16,6 +15,8 @@ function EnterVotes(props) {
         // check that only 6 points are being given
 
 
+        // send the votes back to calling page
+        onEnterVotes([{playerId: '123456', votes: 2}])
         // if (formObject.title) {
         // API.searchBooks(formObject.title)
         //     .then(res => displayResults(res.data.items))
@@ -27,10 +28,7 @@ function EnterVotes(props) {
         <Container fluid>
             <Row>
                 <Col size="md-12 sm-12">
-                    <Jumbotron>
-                        <h1>Enter Votes</h1>
-                        <h3>Enter 3-2-1 for the desired players</h3>
-                    </Jumbotron>
+                    <h3>Enter 3-2-1 for the desired players</h3>
                 </Col>
             </Row>
             <Row>
@@ -55,6 +53,7 @@ function EnterVotes(props) {
                                     </ListItem>
                                 ))}
                                 <FormBtn onClick={handleFormSubmit}>Vote</FormBtn>
+                                {/* <FormBtn onClick={() => onEnterVotes([{playerId: '123456', votes: 2}])}>Vote</FormBtn> */}
                             </form>
                         </List>
                     ) : (

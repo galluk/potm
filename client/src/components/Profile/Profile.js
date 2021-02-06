@@ -20,15 +20,19 @@ function Profile() {
                         <tbody>
                             <tr>
                                 <td>First Name</td>
-                                <td>{authState.user.first_name}</td>
+                                <td>{authState.user.firstName}</td>
                             </tr>
                             <tr>
                                 <td>Last Name</td>
-                                <td>{authState.user.last_name}</td>
+                                <td>{authState.user.lastName}</td>
                             </tr>
                             <tr>
                                 <td>Email</td>
                                 <td>{authState.user.email}</td>
+                            </tr>
+                            <tr>
+                                <td>Team Admin</td>
+                                <td>{authState.user.teamAdmin}</td>
                             </tr>
                         </tbody>
                     </table>

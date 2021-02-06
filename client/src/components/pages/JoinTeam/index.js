@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Jumbotron from "../components/Jumbotron";
-import { Col, Row, Container } from "../components/Grid";
-import { Input, FormBtn } from "../components/Form";
+import Jumbotron from "../../Jumbotron";
+import { Col, Row, Container } from "../../Grid";
+import { Input, FormBtn } from "../../Form";
 
 function JoinTeam() {
     const [user, setUser] = useState([])
