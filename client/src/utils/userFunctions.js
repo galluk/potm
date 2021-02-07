@@ -21,3 +21,18 @@ export const loginUser = (userData) => {
 export const getUsers = () => {
     return axios.get('/api/displayusers').then((res) => res.data);
 };
+
+// get games for the given teamId
+export const getTeamGames = (id) => {
+        return axios.get('/api/games/team/' + id);
+};
+
+// add a new game
+export const addGame = (game) => {
+    return axios.post('/api/games/', game);
+};
+
+// add a new game
+export const deleteGame = (id) => {
+    return axios.delete('/api/games/' + id);
+};

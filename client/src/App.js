@@ -29,6 +29,7 @@ function App() {
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/login" component={Login} />
                         <Route exact path="/managegames" component={ManageGames} />
+                        {/* <Route exact path="/managegames" component={<ManageGames teamId='601367a7f8efe351e0cb8081'/>} /> */}
                         <Route exact path="/votingames" component={VotingGames} />
                         <Route exact path="/jointeam" component={JoinTeam} />
                         <Route exact path="/profile" component={Profile} />

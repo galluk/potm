@@ -46,11 +46,12 @@ module.exports = {
           .then(dbGame => res.json(dbGame))
           .catch(err => res.status(422).json(err));
       },
-        remove: function(req, res) {
+    remove: function(req, res) {
+        console.log('deleting: ' + req.params.id);
+        
         db.Game
-          .findById({ _id: mongoose.Types.ObjectId(`${req.params.id}`) })
-          .then(dbGame => dbGame.remove())
-          .then(dbGame => res.json(dbGame))
-          .catch(err => res.status(422).json(err));
+            .findByIdAndDelete(mongoose.Types.ObjectId(`${req.params.id}`))
+            // .then(dbGame => res.json(dbGame))
+            .catch(err => res.status(422).json(err));
     },
 };

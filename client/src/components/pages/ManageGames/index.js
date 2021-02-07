@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Jumbotron from "../../Jumbotron";
-// import { getTeamGames } from '../../utils/userFunctions';
+import { getTeamGames, addGame, deleteGame } from '../../../utils/userFunctions';
 import AddGame from "../../AddGame";
 import ImportGames from "../../ImportGames";
 import Games from "../../Games";
@@ -9,11 +9,24 @@ import { Col, Row, Container } from "../../Grid";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ManageGames(props) {
-    // const [games, setGames] = useState([])
-    const [games, setGames] = useState([{ _id: '123456', round: 1, gameDate: '20201-02-18', opposition: 'the enemy', votingOpen: false }])
+    const [games, setGames] = useState([])
 
     const [showAddGame, setShowAddGame] = useState(false)
     const [showImportGames, setShowImportGames] = useState(false)
+
+    const teamId='601367a7f8efe351e0cb8081'
+
+    // Load all games and store them with setgames
+    useEffect(() => {
+        loadGames()
+    }, [])
+
+    function loadGames() {
+        // getTeamGames(props.teamId)
+        getTeamGames(teamId)
+            .then(res => setGames(res.data))
+            .catch(err => console.log(err));
+    }
 
     // import csv file of games
     function importGames(filename) {
@@ -27,32 +40,39 @@ function ManageGames(props) {
 
 
     // // delete selected game
-    function deleteGame(gameId) {
+    function onDeleteGame(gameId) {
+        console.log('deleting game: ' + gameId);
+        
         // delete the game from the db
-
-        // update state
-        setGames(games.filter((game) => game._id !== gameId))
+        deleteGame(gameId)
+            .then(res => loadGames())
+            .catch(err => console.log(err));
     }
 
     // // edit selected game
-    function editGame(gameId) {
-        setShowAddGame(!showAddGame)
+    function editGame(game) {
+
+        setShowAddGame(true)
     }
 
     function openVoting(gameId) {
         // update the DB
-        
+
         setGames(games.map((game) =>
             game._id === gameId ? { ...game, votingOpen: !game.votingOpen } : game)
         )
     }
 
     // // add new game
-    function addGame(game) {
-        const newGame = { _id: '987654', ...game }
-        setGames([...games, newGame])
+    function addNewGame(game) {
+        // const newGame = { teamId: props.teamId, ...game }
+        const newGame = { teamId: teamId, ...game }
         console.log('adding game');
-    }
+        console.log(JSON.stringify(newGame));
+        addGame(newGame)
+            .then(res => loadGames())
+            .catch(err => console.log(err));
+}
 
     // show/hide  the game form based on current show
     function showGameForm() {
@@ -81,7 +101,7 @@ function ManageGames(props) {
                         <Button color={showAddGame ? 'red' : 'green'} text={showAddGame ? 'Close' : 'Add'} onClick={showGameForm}>Add</Button>
                     </div>
                     <div>
-                        {showAddGame && <AddGame onAdd={addGame} />}
+                        {showAddGame && <AddGame game={{}} onAdd={addNewGame} />}
                     </div>
                 </Col>
             </Row>
@@ -91,10 +111,10 @@ function ManageGames(props) {
                 <Col size="md-6 sm-62">
                     <div>
                         {games.length ? (
-                            <Games games={games} onDelete={deleteGame} onEdit={editGame} onOpenVoting={openVoting} />
+                            <Games games={games} onDelete={onDeleteGame} onEdit={editGame} onOpenVoting={openVoting} />
                         ) : (
                                 <h5>There are no games associated with this team.</h5>
-                        )}
+                            )}
                     </div>
                 </Col>
             </Row>
