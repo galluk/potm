@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import Jumbotron from "../../Jumbotron";
-import { getTeamGames, addGame, deleteGame } from '../../../utils/userFunctions';
+import { getTeamGames, addGame, deleteGame, updateGame } from '../../../utils/userFunctions';
 import AddGame from "../../AddGame";
 import ImportGames from "../../ImportGames";
-import Games from "../../Games";
+import Game from "../../Game";
 import Button from 'react-bootstrap/Button';
 import { Col, Row, Container } from "../../Grid";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ManageGames(props) {
     const [games, setGames] = useState([])
-
+    const [activeGame, setActiveGame] = useState({})
     const [showAddGame, setShowAddGame] = useState(false)
+    const [showEditGame, setShowEditGame] = useState(false)
     const [showImportGames, setShowImportGames] = useState(false)
 
-    const teamId='601367a7f8efe351e0cb8081'
+    const teamId = '601367a7f8efe351e0cb8081'
 
     // Load all games and store them with setgames
     useEffect(() => {
@@ -38,11 +39,15 @@ function ManageGames(props) {
         setShowImportGames(true)
     }
 
+    function onCancelForm() {
+        setShowEditGame(false)
+        setShowAddGame(false)
+    }
 
     // // delete selected game
     function onDeleteGame(gameId) {
         console.log('deleting game: ' + gameId);
-        
+
         // delete the game from the db
         deleteGame(gameId)
             .then(res => loadGames())
@@ -50,9 +55,18 @@ function ManageGames(props) {
     }
 
     // // edit selected game
-    function editGame(game) {
+    function onEditGame(game) {
+        setShowEditGame(false)
+        let editedGame = {...game, _id: activeGame._id}
+        updateGame(editedGame)
+            .then(res => loadGames())
+            .catch(err => console.log(err));
+    }
 
-        setShowAddGame(true)
+    // show/hide the game form based on current show
+    function showEditGameForm(game) {
+        setActiveGame(game)
+        setShowEditGame(true)
     }
 
     function openVoting(gameId) {
@@ -63,16 +77,15 @@ function ManageGames(props) {
         )
     }
 
-    // // add new game
+    // add new game
     function addNewGame(game) {
-        // const newGame = { teamId: props.teamId, ...game }
         const newGame = { teamId: teamId, ...game }
         console.log('adding game');
         console.log(JSON.stringify(newGame));
         addGame(newGame)
             .then(res => loadGames())
             .catch(err => console.log(err));
-}
+    }
 
     // show/hide  the game form based on current show
     function showGameForm() {
@@ -101,7 +114,10 @@ function ManageGames(props) {
                         <Button color={showAddGame ? 'red' : 'green'} text={showAddGame ? 'Close' : 'Add'} onClick={showGameForm}>Add</Button>
                     </div>
                     <div>
-                        {showAddGame && <AddGame game={{}} onAdd={addNewGame} />}
+                        {showAddGame && <AddGame game={{}} newGame={true} onAdd={addNewGame} onEdit={onEditGame} onCancel={onCancelForm}/>}
+                    </div>
+                    <div>
+                        {showEditGame && <AddGame game={activeGame} newGame={false} onEdit={onEditGame} onCancel={onCancelForm}/>}
                     </div>
                 </Col>
             </Row>
@@ -111,7 +127,9 @@ function ManageGames(props) {
                 <Col size="md-6 sm-62">
                     <div>
                         {games.length ? (
-                            <Games games={games} onDelete={onDeleteGame} onEdit={editGame} onOpenVoting={openVoting} />
+                            games.map((game) => (
+                                <Game key={game._id} game={game} onDelete={onDeleteGame} onEdit={showEditGameForm} onOpenVoting={openVoting} />
+                            ))
                         ) : (
                                 <h5>There are no games associated with this team.</h5>
                             )}
