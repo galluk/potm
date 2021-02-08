@@ -23,7 +23,7 @@ return (
                 Choose a csv file to import.
         </div>
         <div className='form-control' class="text-center">
-            <input type='file' ref='file-name' accept='csv' onChange={(e) => setFileName(e.target.value)}/>
+            <input type='file' accept='csv' onChange={(e) => setFileName(e.target.value)}/>
         </div>
         <input type='submit' value='Import File' className='btn btn-block' />
     </form>
