@@ -31,10 +31,11 @@ router.post('/api/register', (req, res) => {
         } else {
             const today = new Date();
             const userData = {
-                first_name: req.body.first_name,
-                last_name: req.body.last_name,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
                 email: req.body.email,
                 password: req.body.password,
+                teamAdmin: req.body.teamAdmin,
                 created: today,
             };
             bcrypt.hash(req.body.password, 10, (err, hash) => {
@@ -67,13 +68,17 @@ router.post('/api/login', (req, res) => {
         .then((response) => {
             if (response) {
                 if (bcrypt.compareSync(req.body.password, response.password)) {
+                    console.log('************************************************************');
+                    console.log(response);
                     const payload = {
                         _id: response._id,
-                        first_name: response.first_name,
-                        last_name: response.last_name,
+                        firstName: response.firstName,
+                        lastName: response.lastName,
                         email: response.email,
                         teamAdmin: response.teamAdmin,
+                        fullName: `${response.firstName} ${response.lastName}`,
                     };
+                    console.log(payload);
                     let token = jwt.sign(payload, process.env.SECRET_KEY, {
                         // 1 year in seconds
                         expiresIn: 31556926,

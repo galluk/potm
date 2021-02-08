@@ -18,6 +18,10 @@ function Profile() {
                     </div>
                     <table className="table mx-auto col-md-6">
                         <tbody>
+                        <tr>
+                            <td>Full Name</td>
+                                <td>{authState.user.fullName}</td>
+                            </tr>
                             <tr>
                                 <td>First Name</td>
                                 <td>{authState.user.firstName}</td>
@@ -32,7 +36,7 @@ function Profile() {
                             </tr>
                             <tr>
                                 <td>Team Admin</td>
-                                <td>{authState.user.teamAdmin}</td>
+                                <td>{authState.user.teamAdmin ? 'true' : 'false'}</td>
                             </tr>
                         </tbody>
                     </table>
