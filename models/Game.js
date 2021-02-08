@@ -13,6 +13,10 @@ const GameSchema = new Schema({
         trim: true,
         required: 'Team opposition is required',
     },
+    venue: {
+        type: String,
+        trim: true,
+    },
     votingOpen: Boolean,
     votes: [
         {
