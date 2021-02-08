@@ -1,4 +1,9 @@
 import axios from 'axios';
+const mongoose = require('mongoose');
+
+export const getMongooseId = (idString) => {
+    return mongoose.Types.ObjectId(idString)
+}
 
 export const registerUser = (userData) => {
     // console.log(userData);
@@ -35,4 +40,9 @@ export const addGame = (game) => {
 // add a new game
 export const deleteGame = (id) => {
     return axios.delete('/api/games/' + id);
+};
+
+// update a game
+export const updateGame = (game) => {
+    return axios.put('/api/games/', game);
 };

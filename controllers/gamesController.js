@@ -41,8 +41,11 @@ module.exports = {
             .catch((err) => res.status(422).json(err));
     },
     update: function(req, res) {
+        console.log('updating game');
+        console.log(req.body);
+        
         db.Game
-          .findOneAndUpdate({ _id: mongoose.Types.ObjectId(`${req.params.id}`) }, req.body)
+          .findOneAndUpdate({ _id: mongoose.Types.ObjectId(`${req.body._id}`)}, { $set: req.body })
           .then(dbGame => res.json(dbGame))
           .catch(err => res.status(422).json(err));
       },

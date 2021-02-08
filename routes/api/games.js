@@ -4,12 +4,12 @@ const gamesController = require('../../controllers/gamesController');
 // Matches with '/api/games'
 router.route('/')
     // .get(gamesController.findAll)
-    .post(gamesController.create);
+    .post(gamesController.create)
+    .put(gamesController.update);
 
 // Matches with '/api/games/:id'
 router.route('/:id')
     .get(gamesController.findById)
-    .put(gamesController.update)
     .delete(gamesController.remove);
 
 // Matches with '/api/games/team/:id'
