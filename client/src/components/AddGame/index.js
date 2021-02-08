@@ -1,22 +1,27 @@
 import { useState } from 'react'
 
-const AddGame = ({ game, onAdd }) => {
+const AddGame = ({ game, newGame, onAdd, onEdit, onCancel }) => {
   const [round, setRound] = useState(game.round)
-  const [gameDate, setgameDate] = useState('')
+  const [gameDate, setgameDate] = useState(game.gameDate)
   const [opposition, setOpposition] = useState(game.opposition)
-  const [venue, setVenue] = useState('')
-  const [votingOpen, setVotingOpen] = useState(false)
+  const [venue, setVenue] = useState(game.venue)
+  const [votingOpen, setVotingOpen] = useState(game.votingOpen)
 
   const onSubmit = (e) => {
     e.preventDefault()
 
     // do user validation
-    if ((!round) || (!gameDate) || (!opposition)) {
-      alert('Please enter the Round, Date and Opposition.')
+    if ((!round) || (!gameDate) || (!opposition) || (!venue)) {
+      alert('Please enter values for Round, Date, Opposition and Venue.')
       return
     }
 
-    onAdd({ round, gameDate, opposition, venue, votingOpen })
+    if (newGame) {
+      onAdd({ round, gameDate, opposition, venue, votingOpen })
+    }
+    else {
+      onEdit({ round, gameDate, opposition, venue, votingOpen })
+    }
 
     setRound('')
     setgameDate('')
@@ -69,11 +74,12 @@ const AddGame = ({ game, onAdd }) => {
               type="checkbox"
               name="votingOpen"
               value={votingOpen}
-              onChange={(e) => setVotingOpen(e.target.value)}
+              onChange={(e) => setVotingOpen(e.target.checked)}
           />
       </div>
 
-      <input type='submit' value='Save Game' className='btn btn-block' />
+      <input type='submit' value='Save Game' className='btn pull-left' />
+      <input type='button' value='Cancel' className='btn pull-right' onClick={onCancel}/>
     </form>
   )
 }
