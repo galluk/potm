@@ -8,6 +8,8 @@ function Profile() {
 
     useLoginCheck(appDispatch);
 
+    // get a list of the user's teams
+    
     return (
         <div className="pl-0 m-0 container-fluid">
             <Sidebar />
@@ -18,8 +20,8 @@ function Profile() {
                     </div>
                     <table className="table mx-auto col-md-6">
                         <tbody>
-                        <tr>
-                            <td>Full Name</td>
+                            <tr>
+                                <td>Full Name</td>
                                 <td>{authState.user.fullName}</td>
                             </tr>
                             <tr>
@@ -36,7 +38,7 @@ function Profile() {
                             </tr>
                             <tr>
                                 <td>Team Admin</td>
-                                <td>{authState.user.teamAdmin ? 'true' : 'false'}</td>
+                                <td>{authState.user.teamAdmin ? 'Yes' : 'No'}</td>
                             </tr>
                         </tbody>
                     </table>
