@@ -1,21 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Jumbotron from "../../Jumbotron";
 import EnterVotes from "../../EnterVotes";
+import { useAppContext } from '../../../store';
 import { Col, Row, Container } from "../../Grid";
 import { List, ListItem } from "../../List";
 import { FaVoteYea } from 'react-icons/fa'
+import { getUserVotingGames } from '../../../utils/userFunctions';
 // import { Input, FormBtn } from "../components/Form";
 
 // props has an array of games the user can vote on, userId
 function VotingGames(props) {
-  // const [games, setGames] = useState([])
-  const [games, setGames] = useState([
-    { _id : '6013e37ee19f703c1881fe1b', teamId : '601367a7f8efe351e0cb8081', gameDate : "2021-01-29T10:29:18.289+00:00", round : 1, opposition : "The Bad guys"}])
+  const [games, setGames] = useState([])
+  const [authState] = useAppContext();
 
   const [showGameVotes, setShowGameVotes] = useState(false)
   const [selectedGame, setSelectedGame] = useState({})
 
-    // show/hide  the game form based on current show
+  // Load all games available fo voting and store them with setgames
+  useEffect(() => {
+    loadVotingGames()
+  }, [])
+
+  function loadVotingGames() {
+      getUserVotingGames(authState.user._id)
+          .then(res => {
+            console.log('back from getUserVotingGames ----------------------------------------');
+            console.log(res);
+            (res.data) ? setGames(res.data) : setGames([])
+          }
+          )
+          // .then(res => setGames([]))
+          .catch(err => console.log(err));
+  }
+
+
+  // show/hide  the game form based on current show
   function showGameVoteForm(game) {
     setSelectedGame(game)
     setShowGameVotes(true)
@@ -49,7 +68,7 @@ return (
                 {games.map(game => (
                   <ListItem key={game._id}>
                       <strong>
-                        Round {game.round} on {game.date} v {game.opposition}
+                        Round {game.round} on {game.gameDate.slice(0, 10)} v {game.opposition}
                       </strong>
                       <FaVoteYea
                         style={{color: 'purple', cursor: 'pointer', fontSize: '36px' }}
