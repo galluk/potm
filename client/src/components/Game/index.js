@@ -4,7 +4,7 @@ import { FaTimes, FaPencilAlt, FaEnvelopeOpen } from 'react-icons/fa'
 function Game({ game, onDelete, onEdit, onOpenVoting }) {
   return (
     <div className="game">
-      Round {game.round}:   {game.gameDate}  v  {game.opposition}  @  {game.venue}  
+      Round {game.round}  on  {game.gameDate.slice(0, 10)}  v  {game.opposition}  @  {game.venue}  
       <FaEnvelopeOpen
           style={game.votingOpen ? {color: 'green', fontSize: '24px' } :
              {color: 'red', fontSize: '24px' }}
