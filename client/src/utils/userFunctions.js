@@ -27,6 +27,11 @@ export const getUsers = () => {
     return axios.get('/api/displayusers').then((res) => res.data);
 };
 
+// get all games open for voting for the current user
+export const getUserVotingGames = (id) => {
+    return axios.get('/api/games/votingopen/' + id);
+};
+
 // get games for the given teamId
 export const getTeamGames = (id) => {
         return axios.get('/api/games/team/' + id);
@@ -46,3 +51,11 @@ export const deleteGame = (id) => {
 export const updateGame = (game) => {
     return axios.put('/api/games/', game);
 };
+
+export const addPlayer = (player) => {
+    return axios.post('api/player/', player)
+}
+
+export const createTeam = (team) => {
+    return axios.post('api/team/', team)
+}

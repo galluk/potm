@@ -11,8 +11,6 @@ function Navbar() {
 
     useLoginCheck(dispatch);
 
-    console.log(authState);
-
     const handleLogOut = (e) => {
         e.preventDefault();
         logout(dispatch);
@@ -63,6 +61,11 @@ function Navbar() {
             <li>
                 <Link className= "mb-1 mr-1 btn btn-sm active" to="/managegames">
                     Manage Games
+                </Link>
+            </li>
+            <li>
+                <Link className= "mb-1 mr-1 btn btn-sm active" to="/createteam">
+                    Create Team
                 </Link>
             </li>
             <li>

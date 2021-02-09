@@ -25,6 +25,8 @@ module.exports = {
         // get all games for the player with the given user id
         db.Player.find({ userId: mongoose.Types.ObjectId(`${req.params.id}`) })
             .then((dbPlayers) => {
+                console.log('players: ');
+                console.log(dbPlayers);
                 // get the teamIds that this player is in
                 let team_ids = dbPlayers.map(function (player) {
                     return mongoose.Types.ObjectId(player.teamId);
@@ -32,7 +34,7 @@ module.exports = {
                 // get the games that are open for voting for the given team_ids
                 db.Game.find({ teamId: { '$in': team_ids }, votingOpen: true })
                     .then((dbGames) => {
-                        // have the teams associated with this user, now get the games they can vote on
+                        console.log('from findOpenForVotingByUserId');
                         console.log(dbGames);
                         res.json(dbGames);
                     })
@@ -41,9 +43,6 @@ module.exports = {
             .catch((err) => res.status(422).json(err));
     },
     update: function(req, res) {
-        console.log('updating game');
-        console.log(req.body);
-        
         db.Game
           .findOneAndUpdate({ _id: mongoose.Types.ObjectId(`${req.body._id}`)}, { $set: req.body })
           .then(dbGame => res.json(dbGame))
@@ -51,7 +50,6 @@ module.exports = {
       },
     remove: function(req, res) {
         console.log('deleting: ' + req.params.id);
-        
         db.Game
             .findByIdAndDelete(mongoose.Types.ObjectId(`${req.params.id}`))
             // .then(dbGame => res.json(dbGame))

@@ -1,26 +1,28 @@
 import React, { useState } from "react";
+import { useAppContext } from '../../../store';
 import Jumbotron from "../../Jumbotron";
 import { Col, Row, Container } from "../../Grid";
 import { Input, FormBtn } from "../../Form";
+import { addPlayer } from '../../../utils/userFunctions';
 
 function JoinTeam() {
-    const [user, setUser] = useState([])
-    const [formObject, setFormObject] = useState({})
+    const [teamId, setTeamId] = useState('')
+    const [authState] = useAppContext();
 
     // Handles updating component state when the user types into the input field
     function handleInputChange(event) {
         const { name, value } = event.target;
-        setFormObject({ ...formObject, [name]: value })
+        setTeamId(value)
     };
 
     // When the form is submitted, use the API to add the user as a player to the given team
     function handleFormSubmit(event) {
         event.preventDefault();
-        // if (formObject.title) {
-            // API.searchBooks(formObject.title)
-            //     .then(res => displayResults(res.data.items))
-            //     .catch(err => console.log(err));
-        // }
+        let newPlayer = {userId: authState.user._id, teamId: teamId}
+        console.log(newPlayer);
+        addPlayer(newPlayer)
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
     };
 
     return (
@@ -38,7 +40,7 @@ function JoinTeam() {
                   placeholder="Team Id"
                 />
                 <FormBtn
-                  disabled={!(formObject.title)}
+                  disabled={!(teamId.length === 24)}
                   onClick={handleFormSubmit}
                 >
                   Join

@@ -9,6 +9,7 @@ import Dashboard from './components/pages/Dashboard/Dashboard';
 import Other from './components/pages/Other/Other';
 import Profile from './components/Profile/Profile';
 import ManageGames from './components/pages/ManageGames';
+import CreateTeam from './components/pages/CreateTeam';
 import VotingGames from './components/pages/VotingGames';
 import JoinTeam from './components/pages/JoinTeam';
 import StartUp from './components/pages/StartUp/StartUp';
@@ -28,8 +29,8 @@ function App() {
                     <div className="p-0 m-0 container-fluid">
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/login" component={Login} />
+                        <Route exact path="/createteam" component={CreateTeam} />
                         <Route exact path="/managegames" component={ManageGames} />
-                        {/* <Route exact path="/managegames" component={<ManageGames teamId='601367a7f8efe351e0cb8081'/>} /> */}
                         <Route exact path="/votingames" component={VotingGames} />
                         <Route exact path="/jointeam" component={JoinTeam} />
                         <Route exact path="/profile" component={Profile} />

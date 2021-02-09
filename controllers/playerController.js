@@ -4,9 +4,13 @@ const mongoose = require('mongoose');
 // Defining methods for the gamesController
 module.exports = {
     create: function (req, res) {
+        // set ids
+        let player = {userId: mongoose.Types.ObjectId(`${req.body.userId}`), 
+                      teamId: mongoose.Types.ObjectId(`${req.body.teamId}`)}
+        console.log(player);
         db.Player
-            .create(req.body)
-            .then((dbGame) => res.json(dbGame))
+            .create(player)
+            .then((dbPlayer) => res.json(dbPlayer))
             .catch((err) => res.status(422).json(err));
     },
     // getPlayersInTeam: function (req, res) {
