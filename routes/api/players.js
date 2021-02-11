@@ -5,4 +5,7 @@ const playerController = require('../../controllers/playerController');
 router.route('/')
     .post(playerController.create);
 
+router.route('/inteam/:id')
+    .get(playerController.getPlayersInTeam);
+
 module.exports = router;
