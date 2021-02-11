@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Jumbotron from "../../Jumbotron";
 import { getTeamGames, addGame, deleteGame, updateGame } from '../../../utils/userFunctions';
+import { List, ListItem } from "../../List";
 import AddGame from "../../AddGame";
 import ImportGames from "../../ImportGames";
 import Game from "../../Game";
@@ -57,7 +58,7 @@ function ManageGames(props) {
     // // edit selected game
     function onEditGame(game) {
         setShowEditGame(false)
-        let editedGame = {...game, _id: activeGame._id}
+        let editedGame = { ...game, _id: activeGame._id }
         updateGame(editedGame)
             .then(res => loadGames())
             .catch(err => console.log(err));
@@ -98,14 +99,13 @@ function ManageGames(props) {
                 <Col size="md-12 sm-12">
                     <Jumbotron>
                         <h1>Manage Games</h1>
-                        <h3>Add, edit, delete or import games for your team.</h3>
+                        <h5>Add, edit, delete or import games for your team.</h5>
                     </Jumbotron>
                 </Col>
             </Row>
             <Row>
-                <Col size="md-3 sm-2">
-                </Col>
-                <Col size="md-6 sm-8">
+                <Col size="md-1 sm-1"></Col>
+                <Col size="md-10 sm-10">
                     <div>
                         {showImportGames && <ImportGames onImport={importGames} />}
                     </div>
@@ -114,27 +114,33 @@ function ManageGames(props) {
                         <Button color={showAddGame ? 'red' : 'green'} text={showAddGame ? 'Close' : 'Add'} onClick={showGameForm}>Add</Button>
                     </div>
                     <div>
-                        {showAddGame && <AddGame game={{}} newGame={true} onAdd={addNewGame} onEdit={onEditGame} onCancel={onCancelForm}/>}
+                        {showAddGame && <AddGame game={{}} newGame={true} onAdd={addNewGame} onEdit={onEditGame} onCancel={onCancelForm} />}
                     </div>
                     <div>
-                        {showEditGame && <AddGame game={activeGame} newGame={false} onEdit={onEditGame} onCancel={onCancelForm}/>}
+                        {showEditGame && <AddGame game={activeGame} newGame={false} onEdit={onEditGame} onCancel={onCancelForm} />}
                     </div>
                 </Col>
+                <Col size="md-1 sm-1"></Col>
             </Row>
             <Row>
-                <Col size="md-3 sm-2">
-                </Col>
-                <Col size="md-6 sm-62">
+                <Col size="md-1 sm-1"></Col>
+                <Col size="md-10 sm-10">
                     <div>
                         {games.length ? (
-                            games.map((game) => (
-                                <Game key={game._id} game={game} onDelete={onDeleteGame} onEdit={showEditGameForm} onOpenVoting={openVoting} />
-                            ))
+                            <List>
+
+                                {games.map((game, index) => (
+                                <ListItem key={index}>
+                                    <Game key={game._id} game={game} onDelete={onDeleteGame} onEdit={showEditGameForm} onOpenVoting={openVoting} />
+                                </ListItem>
+                            ))}
+                            </List>
                         ) : (
                                 <h5>There are no games associated with this team.</h5>
                             )}
                     </div>
                 </Col>
+                <Col size="md-1 sm-1"></Col>
             </Row>
         </Container>
     );

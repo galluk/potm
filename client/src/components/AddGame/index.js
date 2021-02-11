@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Input, FormBtn, Checkbox } from "../Form";
 
 const AddGame = ({ game, newGame, onAdd, onEdit, onCancel }) => {
   const [round, setRound] = useState(game.round)
@@ -31,55 +32,58 @@ const AddGame = ({ game, newGame, onAdd, onEdit, onCancel }) => {
   }
 
   return (
-    <form className='add-form' onSubmit={onSubmit}>
-      <div className='form-control'>
+    <form onSubmit={onSubmit}>
+      <div>
         <label>Round: </label>
-        <input
+        <Input
           type='text'
           placeholder='Round'
           value={round}
           onChange={(e) => setRound(e.target.value)}
         />
       </div>
-      <div className='form-control'>
+      <div>
         <label>Date: </label>
-        <input
+        <Input
           type='date'
           // placeholder='Add Day & Time'
           value={gameDate}
           onChange={(e) => setgameDate(e.target.value)}
         />
       </div>
-      <div className='form-control'>
+      <div>
         <label>Opposition: </label>
-        <input
+        <Input
           type='text'
           placeholder='Opposition'
           value={opposition}
           onChange={(e) => setOpposition(e.target.value)}
         />
       </div>
-      <div className='form-control'>
+      <div>
         <label>Venue: </label>
-        <input
+        <Input
           type='text'
           placeholder='Venue'
           value={venue}
           onChange={(e) => setVenue(e.target.value)}
         />
       </div>
-      <div className="form-control">
-          <label>Open Voting: </label>
-          <input
-              type="checkbox"
-              name="votingOpen"
-              value={votingOpen}
-              onChange={(e) => setVotingOpen(e.target.checked)}
-          />
+      <div>
+        <label>Open Voting: </label>
+        <Input
+          type="checkbox"
+          name="votingOpen"
+          value={votingOpen}
+          onChange={(e) => setVotingOpen(e.target.checked)}
+        />
       </div>
-
-      <input type='submit' value='Save Game' className='btn pull-left' />
-      <input type='button' value='Cancel' className='btn pull-right' onClick={onCancel}/>
+      <div>
+        <FormBtn onClick={onCancel}>Cancel</FormBtn>        
+        <FormBtn type='submit'>Save Game</FormBtn>        
+        {/* <input type='button' value='Cancel' className='btn pull-right' onClick={onCancel} />
+        <input type='submit' value='Save Game' className='btn pull-right' /> */}
+      </div>
     </form>
   )
 }
