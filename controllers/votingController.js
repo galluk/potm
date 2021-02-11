@@ -6,7 +6,10 @@ module.exports = {
     addPlayerVotes: function (req, res) {
         db.GameVote
             .insertMany(req.body)
-            .then((dbGameVotes) => res.json(dbGameVotes))
+            .then((dbGameVotes) => dbGameVotes.forEach(function(vote) {
+                db.Game.findOneAndUpdate({ _id: req.params.id }, { votes: vote._id }, { new: true })
+            }))
+            //  res.json(dbGameVotes))
             .catch((err) => res.status(422).json(err));
     },
     getGameVotesByTeam: function (req, res) {
