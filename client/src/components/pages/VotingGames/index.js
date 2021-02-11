@@ -5,16 +5,16 @@ import { useAppContext } from '../../../store';
 import { Col, Row, Container } from "../../Grid";
 import { List, ListItem } from "../../List";
 import { FaVoteYea } from 'react-icons/fa'
-import { getUserVotingGames } from '../../../utils/userFunctions';
+import { getUserVotingGames, getPlayersInTeam } from '../../../utils/userFunctions';
 // import { Input, FormBtn } from "../components/Form";
 
-// props has an array of games the user can vote on, userId
 function VotingGames(props) {
   const [games, setGames] = useState([])
   const [authState] = useAppContext();
 
   const [showGameVotes, setShowGameVotes] = useState(false)
   const [selectedGame, setSelectedGame] = useState({})
+  const [gamePlayers, setGamePlayers] = useState([])
 
   // Load all games available fo voting and store them with setgames
   useEffect(() => {
@@ -23,21 +23,23 @@ function VotingGames(props) {
 
   function loadVotingGames() {
       getUserVotingGames(authState.user._id)
-          .then(res => {
-            console.log('back from getUserVotingGames ----------------------------------------');
-            console.log(res);
-            (res.data) ? setGames(res.data) : setGames([])
-          }
-          )
-          // .then(res => setGames([]))
+          .then(res => setGames(res.data))
           .catch(err => console.log(err));
   }
 
 
   // show/hide  the game form based on current show
-  function showGameVoteForm(game) {
+  function showGameVoteForm(event, game) {
+    event.preventDefault();
     setSelectedGame(game)
-    setShowGameVotes(true)
+    // get the players who are in this team
+    getPlayersInTeam(selectedGame.teamId)
+      .then(res => { 
+         setGamePlayers(res.data)
+         setShowGameVotes(true)
+      })
+      .catch(err => console.log(err));
+    
   }
 
   function doEnterVotes(gameVotes) {
@@ -48,32 +50,35 @@ function VotingGames(props) {
 return (
     <Container fluid>
       <Row>
-        <Col size="md-10 sm-12">
+        <Col size="md-12 sm-12">
           <Jumbotron>
             <h1>Enter Votes</h1>
-            <h3>Select game and enter votes</h3>
+            <h4>Select game and enter votes</h4>
           </Jumbotron>
         </Col>
       </Row>
       <Row>
-        <Col size="md-10 sm-12">
+        <Col size="md-12 sm-12">
         <div>
-          {showGameVotes && <EnterVotes game={selectedGame} onEnterVotes={doEnterVotes} />}
+          {showGameVotes && <EnterVotes game={selectedGame} players={gamePlayers} onEnterVotes={doEnterVotes} />}
         </div>
         </Col>
       </Row>
       <Row>
+        <Col size="md-2 sm-2"></Col>
+        <Col size="md-8 sm-8">
           {games.length ? (
-              <List>
+              <List size="md-12 sm-12" style={{alignItems:'center'}}>
                 {games.map(game => (
                   <ListItem key={game._id}>
                       <strong>
                         Round {game.round} on {game.gameDate.slice(0, 10)} v {game.opposition}
                       </strong>
                       <FaVoteYea
+                        className='float-right' 
                         style={{color: 'purple', cursor: 'pointer', fontSize: '36px' }}
-                        title={'Vote' }
-                        onClick={() => showGameVoteForm(game)}
+                        title={'Vote'}
+                        onClick={(e) => showGameVoteForm(e, game)}
                       />
                   </ListItem>
                 ))}
@@ -81,7 +86,9 @@ return (
           ) : (
             <h3>You don't have any games currently open for voting.</h3>
           )}
-          </Row>   
+          </Col>
+          <Col size="md-2 sm-2"></Col>
+        </Row>   
     </Container>
   );
 }
