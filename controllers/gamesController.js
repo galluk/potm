@@ -25,8 +25,6 @@ module.exports = {
         // get all games for the player with the given user id
         db.Player.find({ userId: mongoose.Types.ObjectId(`${req.params.id}`) })
             .then((dbPlayers) => {
-                console.log('players: ');
-                console.log(dbPlayers);
                 // get the teamIds that this player is in
                 let team_ids = dbPlayers.map(function (player) {
                     return mongoose.Types.ObjectId(player.teamId);
@@ -34,8 +32,6 @@ module.exports = {
                 // get the games that are open for voting for the given team_ids
                 db.Game.find({ teamId: { '$in': team_ids }, votingOpen: true })
                     .then((dbGames) => {
-                        console.log('from findOpenForVotingByUserId');
-                        console.log(dbGames);
                         res.json(dbGames);
                     })
                     .catch((err) => res.status(422).json(err));
