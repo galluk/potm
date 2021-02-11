@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Jumbotron from "../../Jumbotron";
 import { Col, Row, Container } from "../../Grid";
-import { Input, FormBtn } from "../../Form";
+import { Input, FormBtn, Select } from "../../Form";
 import { createTeam } from '../../../utils/userFunctions';
 
 function CreateTeam() {
@@ -32,28 +32,28 @@ function CreateTeam() {
   return (
     <Container fluid>
       <Row>
-        <Col size="md-10 sm-12">
+        <Col size="md-12 sm-12">
           <Jumbotron>
             <h1>Create Your Team!</h1>
-            <h3>Select a season you're all set</h3>
+            <h5>Select a season, enter a name you're all set</h5>
           </Jumbotron>
           <form>
             <div>
             <label>Select Season: </label>
-            <select
+            <Select
               onChange={handleSelectChange}
               name="seasonName"
               placeholder="Select season">
               <option value={seasons[0]._id} defaultValue>{seasons[0].name}</option>
-            </select>
+            </Select>
             </div>
             <Input
               onChange={handleInputChange}
               name="teamName"
-              placeholder="Team Name"
+              placeholder="Team Name (at least 4 characters)"
             />
             <FormBtn
-              disabled={!(teamName) && !seasonId}
+              disabled={(teamName.length < 4) && !(seasonId === '')}
               onClick={handleFormSubmit}
             >
               Create

@@ -28,10 +28,10 @@ function JoinTeam() {
     return (
         <Container fluid>
           <Row>
-            <Col size="md-10 sm-12">
+            <Col size="md-12 sm-12">
               <Jumbotron>
                 <h1>Join Your Team!</h1>
-                <h3>Enter the provided TeamId to join up...</h3>
+                <h5>Enter the provided TeamId to join up...</h5>
               </Jumbotron>
               <form>
                 <Input
