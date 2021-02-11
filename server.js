@@ -34,8 +34,9 @@ app.use(express.static('public'));
 // Connect to MongoDB
 mongoose
     .connect(
-        process.env.MONGODB_URI ||
-            `mongodb+srv://mongoLG:${encodeURIComponent(process.env.REACT_APP_DB_PASS)}@cluster0.xoyrx.mongodb.net/playervoting`,
+        // process.env.MONGODB_URI ||
+        //     `mongodb+srv://mongoLG:${encodeURIComponent(process.env.REACT_APP_DB_PASS)}@cluster0.xoyrx.mongodb.net/playervoting`,
+            process.env.MONGODB_URI || `mongodb://localhost/playervoting`,
         {
             useNewUrlParser: true,
             useUnifiedTopology: true,
