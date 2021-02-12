@@ -3,9 +3,12 @@ const gamesController = require('../../controllers/gamesController');
 
 // Matches with '/api/games'
 router.route('/')
-    // .get(gamesController.findAll)
     .post(gamesController.create)
     .put(gamesController.update);
+
+// Matches with '/api/games/import'
+router.route('/import/')
+    .post(gamesController.import)
 
 // Matches with '/api/games/:id'
 router.route('/:id')

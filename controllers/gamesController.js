@@ -51,4 +51,14 @@ module.exports = {
             // .then(dbGame => res.json(dbGame))
             .catch(err => res.status(422).json(err));
     },
+    import: function(req, res) {
+        console.log('importing');
+        const games = req.body.map((game) => {
+            return { ...game, teamId: mongoose.Types.ObjectId(game.teamId) }
+        })
+        console.log(games);
+        db.Game
+          .insertMany(games)
+          .catch(err => res.status(422).json(err));
+    },
 };

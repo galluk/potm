@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Jumbotron from "../../Jumbotron";
-import { getTeamGames, addGame, deleteGame, updateGame } from '../../../utils/userFunctions';
+import { getTeamGames, addGame, deleteGame, updateGame, importGames } from '../../../utils/userFunctions';
 import { List, ListItem } from "../../List";
 import AddGame from "../../AddGame";
 import ImportGames from "../../ImportGames";
@@ -31,8 +31,17 @@ function ManageGames(props) {
     }
 
     // import csv file of games
-    function importGames(filename) {
-        alert('Importing ' + filename)
+    function importNewGames(gameArray) {
+        // create array of new objects with the team id
+        const newGames = gameArray.map(game => {
+            return {...game, teamId: teamId }
+        })
+
+        if (newGames.length > 0) {
+            importGames(newGames)
+                .then(res => loadGames())
+                .catch(err => console.log(err));
+        }
         setShowImportGames(false)
     }
 
@@ -107,7 +116,7 @@ function ManageGames(props) {
                 <Col size="md-1 sm-1"></Col>
                 <Col size="md-10 sm-10">
                     <div>
-                        {showImportGames && <ImportGames onImport={importGames} />}
+                        {showImportGames && <ImportGames onImport={importNewGames} />}
                     </div>
                     <div>
                         <Button variant="outline-primary" className="float-right" onClick={showImportGamesForm}>Import</Button>

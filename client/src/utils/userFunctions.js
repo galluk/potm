@@ -60,6 +60,10 @@ export const createTeam = (team) => {
     return axios.post('api/team/', team)
 }
 
+export const importGames = (games) => {
+    return axios.post('api/games/import/', games)
+}
+
 export const getPlayersInTeam = (teamId) => {
     return axios.get('api/player/inteam/' + teamId)
 }
