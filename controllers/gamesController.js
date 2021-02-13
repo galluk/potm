@@ -4,20 +4,17 @@ const mongoose = require('mongoose');
 // Defining methods for the gamesController
 module.exports = {
     create: function (req, res) {
-        db.Game
-            .create(req.body)
+        db.Game.create(req.body)
             .then((dbGame) => res.json(dbGame))
             .catch((err) => res.status(422).json(err));
     },
     findById: function (req, res) {
-        db.Game
-            .findById(mongoose.Types.ObjectId(`${req.params.id}`))
+        db.Game.findById(mongoose.Types.ObjectId(`${req.params.id}`))
             .then((dbGame) => res.json(dbGame))
             .catch((err) => res.status(422).json(err));
     },
     findByTeamId: function (req, res) {
-        db.Game
-            .find({ teamId: mongoose.Types.ObjectId(`${req.params.id}`) })
+        db.Game.find({ teamId: mongoose.Types.ObjectId(`${req.params.id}`) })
             .then((dbGames) => res.json(dbGames))
             .catch((err) => res.status(422).json(err));
     },
@@ -30,7 +27,7 @@ module.exports = {
                     return mongoose.Types.ObjectId(player.teamId);
                 });
                 // get the games that are open for voting for the given team_ids
-                db.Game.find({ teamId: { '$in': team_ids }, votingOpen: true })
+                db.Game.find({ teamId: { $in: team_ids }, votingOpen: true })
                     .then((dbGames) => {
                         res.json(dbGames);
                     })
@@ -38,27 +35,24 @@ module.exports = {
             })
             .catch((err) => res.status(422).json(err));
     },
-    update: function(req, res) {
-        db.Game
-          .findOneAndUpdate({ _id: mongoose.Types.ObjectId(`${req.body._id}`)}, { $set: req.body })
-          .then(dbGame => res.json(dbGame))
-          .catch(err => res.status(422).json(err));
-      },
-    remove: function(req, res) {
-        console.log('deleting: ' + req.params.id);
-        db.Game
-            .findByIdAndDelete(mongoose.Types.ObjectId(`${req.params.id}`))
-            // .then(dbGame => res.json(dbGame))
-            .catch(err => res.status(422).json(err));
+    update: function (req, res) {
+        db.Game.findOneAndUpdate({ _id: mongoose.Types.ObjectId(`${req.body._id}`) }, { $set: req.body })
+            .then((dbGame) => res.json(dbGame))
+            .catch((err) => res.status(422).json(err));
     },
-    import: function(req, res) {
+    remove: function (req, res) {
+        db.Game.findByIdAndDelete(mongoose.Types.ObjectId(`${req.params.id}`))
+            // .then(dbGame => res.json(dbGame))
+            .catch((err) => res.status(422).json(err));
+    },
+    import: function ({ body }, res) {
         console.log('importing');
-        const games = req.body.map((game) => {
-            return { ...game, teamId: mongoose.Types.ObjectId(game.teamId) }
-        })
+        const games = body.map((game) => {
+            return { ...game, teamId: mongoose.Types.ObjectId(game.teamId) };
+        });
         console.log(games);
-        db.Game
-          .insertMany(games)
-          .catch(err => res.status(422).json(err));
+        db.Game.insertMany(games)
+            .then((dbGames) => { console.log(dbGames); res.json(dbGames) })
+            .catch((err) => res.status(422).json(err));
     },
 };
