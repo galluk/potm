@@ -1,6 +1,18 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const GameVoteSchema = new Schema({
+    playerId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Player',
+    },
+    votedPlayerId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Player',
+    },
+    points: Number,
+});
+
 const GameSchema = new Schema({
     teamId: {
         type: Schema.Types.ObjectId,
@@ -18,12 +30,13 @@ const GameSchema = new Schema({
         trim: true,
     },
     votingOpen: Boolean,
-    votes: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'GameVote',
-        },
-    ],
+    votes: [GameVoteSchema],
+    // votes: [
+    //     {
+    //         type: Schema.Types.ObjectId,
+    //         ref: 'GameVote',
+    //     },
+    // ],
 });
 
 const Game = mongoose.model('Game', GameSchema);
