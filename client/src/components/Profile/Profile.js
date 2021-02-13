@@ -9,7 +9,7 @@ function Profile() {
     useLoginCheck(appDispatch);
 
     // get a list of the user's teams
-    
+
     return (
         <div className="pl-0 m-0 container-fluid">
             <Sidebar />
@@ -26,11 +26,11 @@ function Profile() {
                             </tr>
                             <tr>
                                 <td>First Name</td>
-                                <td>{authState.user.firstName}</td>
+                                <td>{authState.user.first_name}</td>
                             </tr>
                             <tr>
                                 <td>Last Name</td>
-                                <td>{authState.user.lastName}</td>
+                                <td>{authState.user.last_name}</td>
                             </tr>
                             <tr>
                                 <td>Email</td>

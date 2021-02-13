@@ -7,8 +7,8 @@ function Register(props) {
     const history = useHistory();
 
     const [registerState, setRegisterState] = useState({
-        firstName: '',
-        lastName: '',
+        first_name: '',
+        last_name: '',
         email: '',
         password: '',
         teamAdmin: false,
@@ -30,8 +30,8 @@ function Register(props) {
         handleValidation();
         event.preventDefault();
         const userData = {
-            firstName: registerState.firstName,
-            lastName: registerState.lastName,
+            first_name: registerState.first_name,
+            last_name: registerState.last_name,
             email: registerState.email,
             password: registerState.password,
             teamAdmin: registerState.teamAdmin,
@@ -66,27 +66,27 @@ function Register(props) {
                             <label htmlFor="first_name">First Name</label>
                             <input
                                 type="text"
-                                refs="firstName"
+                                refs="first_name"
                                 className="form-control"
-                                name="firstName"
+                                name="first_name"
                                 placeholder="Enter First Name"
-                                value={registerState.firstName}
+                                value={registerState.first_name}
                                 onChange={onChange}
                             />
-                            <span style={{ color: 'red' }}>{registerState.errors['firstName']}</span>
+                            <span style={{ color: 'red' }}>{registerState.errors['first_name']}</span>
                         </div>
                         <div className="form-group">
                             <label htmlFor="last_name">Last Name</label>
                             <input
                                 type="text"
-                                refs="lastName"
+                                refs="last_name"
                                 className="form-control"
-                                name="lastName"
+                                name="last_name"
                                 placeholder="Enter Last Name"
-                                value={registerState.lastName}
+                                value={registerState.last_name}
                                 onChange={onChange}
                             />
-                            <span style={{ color: 'red' }}>{registerState.errors['lastName']}</span>
+                            <span style={{ color: 'red' }}>{registerState.errors['last_name']}</span>
                         </div>
                         <div className="form-group">
                             <label htmlFor="email">Email Address</label>
@@ -121,11 +121,9 @@ function Register(props) {
                                 refs="teamAdmin"
                                 className="form-control"
                                 name="teamAdmin"
-                                // placeholder="Enter Password"
                                 value={registerState.teamAdmin}
                                 onChange={onChange}
                             />
-                            <span style={{ color: 'red' }}>{registerState.errors['teamAdmin']}</span>
                         </div>
                         <button type="submit" className="btn btn-lg btn-primary btn-block">
                             Register

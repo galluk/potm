@@ -31,8 +31,8 @@ router.post('/api/register', (req, res) => {
         } else {
             const today = new Date();
             const userData = {
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
+                firstName: req.body.first_name,
+                lastName: req.body.last_name,
                 email: req.body.email,
                 password: req.body.password,
                 teamAdmin: req.body.teamAdmin,
@@ -68,12 +68,10 @@ router.post('/api/login', (req, res) => {
         .then((response) => {
             if (response) {
                 if (bcrypt.compareSync(req.body.password, response.password)) {
-                    console.log('************************************************************');
-                    console.log(response);
                     const payload = {
                         _id: response._id,
-                        firstName: response.firstName,
-                        lastName: response.lastName,
+                        first_name: response.firstName,
+                        last_name: response.lastName,
                         email: response.email,
                         teamAdmin: response.teamAdmin,
                         fullName: `${response.firstName} ${response.lastName}`,
@@ -101,8 +99,8 @@ router.get('/api/profile', (req, res) => {
     db.User.findOne({
         _id: decoded._id,
     })
-        .then((response) => {
-            if (response) {
+    .then((response) => {
+        if (response) {
                 res.json(response);
             } else {
                 res.status(400).json({ error: 'User does not exist' });

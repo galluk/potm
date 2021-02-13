@@ -33,6 +33,7 @@ function Login() {
             const response = await loginUser(user);
             // Set token to localStorage
             const token = response.data;
+            console.log('response.data'); console.log(response.data);
             // Set token to Auth header
             setAuthToken(token);
             // Decode token to get user data

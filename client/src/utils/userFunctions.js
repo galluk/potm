@@ -12,6 +12,7 @@ export const registerUser = (userData) => {
         last_name: userData.last_name,
         email: userData.email,
         password: userData.password,
+        teamAdmin: userData.teamAdmin
     });
 };
 
