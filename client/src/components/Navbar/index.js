@@ -39,6 +39,29 @@ function Navbar() {
                 </Link>
             </li>
             <li>
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+                    <span class="navbar-toggler-icon"></span>
+                </button>                
+                {/* <button className="navbar-toggler" classType="button" data-toggle="collapse" dataTarget="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button> */}
+            {/* <li> */}
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul className="navbar-nav ml-auto">
+                        <li><Link className="mb-1 mr-1 btn btn-sm active" to="/managegames">
+                            Manage Games
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className="mb-1 mr-1 btn btn-sm active" to="/createteam">
+                                Create Team
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            {/* </li> */}
+            </li>
+            <li>
                 <Link className="mb-1 mr-1 btn btn-sm active" to="/jointeam">
                     Join
                 </Link>
@@ -49,23 +72,13 @@ function Navbar() {
                 </Link>
             </li>
             <li>
-                <Link className= "mb-1 mr-1 btn btn-sm active" to="/votingames">
+                <Link className="mb-1 mr-1 btn btn-sm active" to="/votingames">
                     Vote
                 </Link>
             </li>
             <li>
-                <Link className= "mb-1 mr-1 btn btn-sm active" to="/profile">
+                <Link className="mb-1 mr-1 btn btn-sm active" to="/profile">
                     Profile
-                </Link>
-            </li>
-            <li>
-                <Link className= "mb-1 mr-1 btn btn-sm active" to="/managegames">
-                    Manage Games
-                </Link>
-            </li>
-            <li>
-                <Link className= "mb-1 mr-1 btn btn-sm active" to="/createteam">
-                    Create Team
                 </Link>
             </li>
             <li>
@@ -99,12 +112,12 @@ function Navbar() {
                 </Link>
             </li>
             <li>
-                <Link className= "mb-1 mr-1 btn btn-sm active" to="/votingames">
+                <Link className="mb-1 mr-1 btn btn-sm active" to="/votingames">
                     Vote
                 </Link>
             </li>
             <li>
-                <Link className= "mb-1 mr-1 btn btn-sm active" to="/profile">
+                <Link className="mb-1 mr-1 btn btn-sm active" to="/profile">
                     Profile
                 </Link>
             </li>

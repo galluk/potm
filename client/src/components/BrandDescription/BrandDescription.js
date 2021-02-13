@@ -11,13 +11,13 @@ function BrandDescription() {
                         <p className="card-text">
                             Player of the match voting is designed to give you a convenient way for your team to determine who the outstanding
                             player has been for the season. Just get your team admin (or take it on yourself!) to create a team, share the team 
-                            id with everyone else who can then register and join the team.
+                            Id with everyone else who can then register and join the team.
                         </p>
                         <p className="card-text">
                             You can even vote for yourself!
                         </p>
                         <p className="card-text">
-                            But would you?
+                            Not that you would...
                         </p>
                     </div>
                 </div>

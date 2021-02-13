@@ -12,7 +12,8 @@
 html, body {
     --hue: var(--hue-neutral);
     /* rgb(243, 255, 229) */
-    background-color: #f3ffe5;
+    background-color: #78f009;
+    /* background-color: #f0ffe3; */
     /* background-color: #ffffff; */
     height: 100%;
     margin: 0;

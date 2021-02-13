@@ -34,3 +34,7 @@
     background-color:#d6d310;
     text-decoration: none;
 }
+
+.btn-sm.active:focus, .btn-group-sm.active:focus {
+    background-color: #6422b4 !important;
+}
