@@ -6,7 +6,7 @@ router.route('/gamevotes/:id')
     .get(votesController.getGameVotesByTeam);
 
 // Matches with "/api/voting/playervotes"
-router.route('/playervotes')
+router.route('/playervotes/:id')
     .post(votesController.addPlayerVotes);
 
 module.exports = router;

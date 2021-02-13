@@ -5,7 +5,7 @@ import { useAppContext } from '../../../store';
 import { Col, Row, Container } from "../../Grid";
 import { List, ListItem } from "../../List";
 import { FaVoteYea } from 'react-icons/fa'
-import { getUserVotingGames, getPlayersInTeam } from '../../../utils/userFunctions';
+import { getUserVotingGames, getPlayersInTeam, enterPlayerVotes } from '../../../utils/userFunctions';
 // import { Input, FormBtn } from "../components/Form";
 
 function VotingGames(props) {
@@ -15,10 +15,12 @@ function VotingGames(props) {
   const [showGameVotes, setShowGameVotes] = useState(false)
   const [selectedGame, setSelectedGame] = useState({})
   const [gamePlayers, setGamePlayers] = useState([])
+  const [loggedInUserId, setLoggedInUserId] = useState()
 
   // Load all games available fo voting and store them with setgames
   useEffect(() => {
     loadVotingGames()
+    setLoggedInUserId(authState.user._id)
   }, [])
 
   function loadVotingGames() {
@@ -36,6 +38,7 @@ function VotingGames(props) {
     getPlayersInTeam(selectedGame.teamId)
       .then(res => { 
          setGamePlayers(res.data)
+         console.log(res.data);
          setShowGameVotes(true)
       })
       .catch(err => console.log(err));
@@ -43,8 +46,13 @@ function VotingGames(props) {
   }
 
   function doEnterVotes(gameVotes) {
-    setShowGameVotes(false)
-    alert('votes have been entered! ' + JSON.stringify(gameVotes))
+    enterPlayerVotes(gameVotes, selectedGame._id)
+    .then(res => { 
+      alert('Votes have been saved!');
+    })
+    .catch(err => console.log(err));
+    setShowGameVotes(false);
+    
   }
 
 return (
@@ -60,7 +68,7 @@ return (
       <Row>
         <Col size="md-12 sm-12">
         <div>
-          {showGameVotes && <EnterVotes game={selectedGame} players={gamePlayers} onEnterVotes={doEnterVotes} />}
+          {showGameVotes && <EnterVotes game={selectedGame} players={gamePlayers} loggedId={loggedInUserId} onEnterVotes={doEnterVotes} />}
         </div>
         </Col>
       </Row>

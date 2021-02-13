@@ -68,3 +68,7 @@ export const importGames = (games) => {
 export const getPlayersInTeam = (teamId) => {
     return axios.get('api/player/inteam/' + teamId)
 }
+
+export const enterPlayerVotes = (votes, gameId) => {
+    return axios.post('/api/voting/playervotes/' + gameId, votes);
+}

@@ -14,24 +14,27 @@ module.exports = {
             .catch((err) => res.status(422).json(err));
     },
     getPlayersInTeam: function (req, res) {
-        console.log('getting players in hte team');
-
         db.Player
             .find({ teamId: mongoose.Types.ObjectId(`${req.params.id}`) })
             .then((dbPlayers) => {
-                console.log('got players in hte team');
-                
                 // get the userIds for players in the team
                 let userIds = dbPlayers.map(function (player) {
                     return mongoose.Types.ObjectId(player.userId);
-                    // return player.userId
                 });
-                console.log(userIds);
                 // get the users associated with the returned players
-                // db.Game.find({ teamId: { '$in': team_ids }, votingOpen: true })
                 db.User.find({ _id: { '$in': userIds } })
                     .then((dbUsers) => {
-                       res.json(dbUsers);
+                        let playerData = dbUsers.map((user) => {
+                            // find the user id within the players
+                            let thisPlayer = dbPlayers.find((player) => player.userId.toString() === user._id.toString());
+                            if (thisPlayer) {
+                                return { userId: user._id, firstName: user.firstName, lastName: user.lastName, playerId: thisPlayer._id };
+                            }
+                            else {
+                                return { userId: user._id, firstName: user.firstName, lastName: user.lastName };
+                            }
+                        })
+                       res.json(playerData);
                     })
                     .catch((err) => res.status(422).json(err));
             })

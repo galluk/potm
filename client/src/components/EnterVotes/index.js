@@ -3,28 +3,31 @@ import { Col, Row, Container } from "../Grid";
 import { List, ListItem } from "../List";
 import { FormBtn } from "../Form";
 
-function EnterVotes({ game, players, onEnterVotes}) {
+function EnterVotes({ game, players, loggedId, onEnterVotes}) {
 
     const playerVotes = [];
+    let userPlayerId = '';
 
     useEffect(() => {
+        // get the usrs playerId for this team 
+        const loggedInPlayer = players.find(p => p.userId.toString() === loggedId.toString());
+        userPlayerId = !(loggedInPlayer) ? '' : loggedInPlayer.userId;
+        
         // load an array to store all the values
         players.forEach(player => 
-            playerVotes.push({ playerId: '', votedPlayerId: player.playerId, points: 0 })
+            playerVotes.push({ votedPlayerId: player.playerId, points: 0 })
         )
       }, [])
       
     function doVoteChange(e) {
-        let arrayIndex = e.target.name;
-        playerVotes[arrayIndex].points = parseInt(e.target.value);
-        console.log(playerVotes);
+        let arrayIndex = parseInt(e.target.name);
+        playerVotes[arrayIndex].points = (e.target.value === '') ? 0 : parseInt(e.target.value);
     }
 
     // When the form is submitted, use the API to add the players votes
     function handleFormSubmit(event) {
         event.preventDefault();
 
-        console.log(playerVotes);
         // check that only 6 points are being given
         let totalVotes = playerVotes.reduce(function (accumulator, vote) {
             return accumulator + vote.points
@@ -35,14 +38,15 @@ function EnterVotes({ game, players, onEnterVotes}) {
             alert('The total points given for a game must = 6')
         }
         else {
+            // send the votes back to calling page
+            const votesToAdd = [];
+            playerVotes.forEach(vote => {
+                if (vote.points > 0) {
+                    votesToAdd.push({ gameId: game._id, playerId: userPlayerId, votedPlayerId: vote.votedPlayerId, points: vote.points })
+                }
+            })
 
-        // send the votes back to calling page
-        onEnterVotes([{playerId: '123456', votes: 2}])
-        // if (formObject.title) {
-        // API.searchBooks(formObject.title)
-        //     .then(res => displayResults(res.data.items))
-        //     .catch(err => console.log(err));
-        // }
+            onEnterVotes(votesToAdd);
         }
     };
 
