@@ -11,10 +11,12 @@ function Register(props) {
         last_name: '',
         email: '',
         password: '',
-        teamAdmin: false,
         errors: {},
         formIsValid: true,
     });
+    const [isTeamAdmin, setIsTeamAdmin] = useState(false)
+
+    let firstClick = true;
 
     const handleValidation = () => {
         const [errors, formIsValid] = checkFormFields(registerState);
@@ -34,7 +36,7 @@ function Register(props) {
             last_name: registerState.last_name,
             email: registerState.email,
             password: registerState.password,
-            teamAdmin: registerState.teamAdmin,
+            teamAdmin: isTeamAdmin,
         };
         if (registerState.formIsValid) {
             getUsers().then((data) => {
@@ -121,8 +123,7 @@ function Register(props) {
                                 refs="teamAdmin"
                                 className="form-control"
                                 name="teamAdmin"
-                                value={registerState.teamAdmin}
-                                onChange={onChange}
+                                onChange={(e) => setIsTeamAdmin(e.target.checked)}
                             />
                         </div>
                         <button type="submit" className="btn btn-lg btn-primary btn-block">
