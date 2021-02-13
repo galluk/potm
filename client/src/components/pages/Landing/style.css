@@ -1,5 +1,6 @@
 .backgroundImg {
-    background-image: url(../../assets/images/landingpagebackgroundimg.jpg);
+    /* background-image: url(../../assets/images/landingpagebackgroundimg.jpg); */
+    background-image: url(../../assets/images/landingpagebackgroundimg.jpeg);
     background-size:     cover;                  
     background-repeat:   no-repeat;
     background-position: center center;
@@ -7,11 +8,11 @@
 
 .landingJumbo {
     width: 60%;
-    background-color: rgba(204, 204, 204, 0.6) !important;
+    background-color: rgba(204, 204, 204, 0.5) !important;
 }
 
 .cardBackground{
-    background-color: rgb(231, 248, 255)!important;
+    background-color: rgb(49, 99, 0, 0.4)!important;
 }
 
 

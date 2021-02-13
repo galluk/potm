@@ -11,8 +11,7 @@ function JoinTeam() {
 
     // Handles updating component state when the user types into the input field
     function handleInputChange(event) {
-        const { name, value } = event.target;
-        setTeamId(value)
+        setTeamId(event.target.value)
     };
 
     // When the form is submitted, use the API to add the user as a player to the given team

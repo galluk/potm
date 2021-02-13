@@ -11,39 +11,41 @@
 
 html, body {
     --hue: var(--hue-neutral);
-    background-color: #ffffff;
+    /* rgb(243, 255, 229) */
+    background-color: #f3ffe5;
+    /* background-color: #ffffff; */
     height: 100%;
     margin: 0;
 }
 
 h1 {
     font-family: "Calibri", "Georgia", "Times New Roman", Times, serif;
-    color: #212121;
+    color: black;
     margin: 0;
     text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     font-size: 28px;
 }
 
 h3 {
     font-family: "Calibri", "Georgia", "Times New Roman", Times, serif;
-    color: #333333;
+    color: #111111;
     margin-left: 10px;
     text-align: left;
-    padding-top: 20px;
+    padding-top: 10px;
     /* padding-bottom: 20px; */
     font-size: 28px;
 }
 
 h5 {
-    font-family: "Calibri", Verdana, "Geneva", sans-serif;;
-    color: #212121;
+    font-family: "Calibri", Verdana, "Geneva", sans-serif;
+    color: #111111;
     margin-left: 10px;
     text-align: center;
-    /* padding-top: 20px; */
-    /* padding-bottom: 20px; */
-    font-size: 20px;
+    padding-top: 1px;
+    padding-bottom: 10px;
+    font-size: 28px;
 }
 
 /* These rules take effect when the browser's width */

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Jumbotron from "../../Jumbotron";
-import { useAppContext } from '../../../store';
 import { Col, Row, Container } from "../../Grid";
-import { List, ListItem } from "../../List";
 import { getGameVotesByteam, getPlayersInTeam } from '../../../utils/userFunctions';
 
 function TallyBoard() {
@@ -54,7 +52,7 @@ return (
             <Col size="md-12 sm-12">
                 <Jumbotron>
                     <h1>Current Standings</h1>
-                    <h4>Here's how the votes have gone so far...</h4>
+                    <h5>Here's how the votes have gone so far...</h5>
                 </Jumbotron>
             </Col>
         </Row>
@@ -62,15 +60,16 @@ return (
             <Col size="md-2 sm-0"></Col>
             <Col size="md-8 sm-12">
                 {players.length ? (
-                    <List size="md-12 sm-12" style={{alignItems:'center'}}>
-                    {players.map((player, index) => (
-                        <ListItem key={index}>
-                            <strong>
-                                {player.firstName} {player.lastName} {player.totalVotes} 
-                            </strong>
-                        </ListItem>
-                    ))}
-                    </List>
+                    <table className="table mx-auto col-md-8" style={{color: "#111111"}}>
+                        <tbody>
+                            {players.map(player => (
+                                <tr>
+                                    <td>{player.firstName} {player.lastName}</td>
+                                    <td><strong>{player.totalVotes}</strong></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 ) : (
                 <h3>There are no players currently in this team.</h3>
                 )}

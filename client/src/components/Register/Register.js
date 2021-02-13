@@ -16,8 +16,6 @@ function Register(props) {
     });
     const [isTeamAdmin, setIsTeamAdmin] = useState(false)
 
-    let firstClick = true;
-
     const handleValidation = () => {
         const [errors, formIsValid] = checkFormFields(registerState);
         setRegisterState({ ...registerState, errors, formIsValid });

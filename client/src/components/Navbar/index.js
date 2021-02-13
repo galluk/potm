@@ -49,11 +49,6 @@ function Navbar() {
                 </Link>
             </li>
             <li>
-                <Link className="mb-1 mr-1 btn btn-sm active" to="/dashboard">
-                    Dashboard
-                </Link>
-            </li>
-            <li>
                 <Link className= "mb-1 mr-1 btn btn-sm active" to="/votingames">
                     Vote
                 </Link>
@@ -101,11 +96,6 @@ function Navbar() {
             <li>
                 <Link className="mb-1 mr-1 btn btn-sm active" to="/standings">
                     Standings
-                </Link>
-            </li>
-            <li>
-                <Link className="mb-1 mr-1 btn btn-sm active" to="/dashboard">
-                    Dashboard
                 </Link>
             </li>
             <li>

@@ -1,5 +1,4 @@
 import React from 'react';
-import Sidebar from '../../Sidebar/Sidebar';
 import DashboardNewsCard from '../../DashboardNewsCard/DashboardNewsCard';
 import { useAppContext } from '../../../store';
 import { useLoginCheck } from '../../../utils/setAuthToken';
@@ -11,7 +10,6 @@ function DashBoard() {
 
     return (
         <div className="pl-0 container-fluid">
-            <Sidebar />
             <div>
                 <h1>
                     Welcome {state.user.first_name} {state.user.last_name}

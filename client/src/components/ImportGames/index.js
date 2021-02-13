@@ -1,13 +1,10 @@
-// import { useState } from 'react'
-import { Input, FormBtn, Select } from "../Form";
+import { Input, FormBtn } from "../Form";
 
 const ImportGames = ({ onImport }) => {
-    // const [fileName, setFileName] = useState('')
     let selectedFile = {};
 
     function onSubmit(e) {
         e.preventDefault()
-
 
         // do user validation
         if (!selectedFile) {
@@ -18,8 +15,6 @@ const ImportGames = ({ onImport }) => {
             let fileData = new FileReader();
             fileData.onloadend = onFileLoaded;
             fileData.readAsText(selectedFile);
-
-            // onImport(fileName)
         }
     }
 

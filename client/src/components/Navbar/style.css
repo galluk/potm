@@ -1,5 +1,5 @@
 .navbar {
-    background-color:#3f0f84;
+    background-color:rgb(49, 99, 0, 0.4)!important;
 }
 
 .btn {
@@ -7,8 +7,8 @@
     color: #FFFFFF !important;
 }
 
-/* .controlBtn {
-    background-color: #001f3f;
+.controlBtn {
+    background-color: #d6d310;
     color: #FFFFFF;
     font-size: 18px;
     font-family: "Calibri", "Georgia", "Times New Roman", Times, serif;
@@ -17,20 +17,20 @@
     border-radius: 25px;
     text-decoration: none;
     border: none
-} */
+}
 
-/* .nav-link{
+.nav-link{
     color: #ffffff !important;
 }
 
 .nav-item:hover {
-    background-color: #001f3f;
+    background-color: red;
     text-decoration: none;
     padding: 5px 1px 5px 1px;
     width: 100px;
 }
 
 .nav-link:hover {
-    background-color: #777777;
+    background-color:#d6d310;
     text-decoration: none;
-} */
+}

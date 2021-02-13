@@ -61,7 +61,7 @@ return (
         <Col size="md-12 sm-12">
           <Jumbotron>
             <h1>Enter Votes</h1>
-            <h4>Select game and enter votes</h4>
+            <h5>Select game and enter votes</h5>
           </Jumbotron>
         </Col>
       </Row>
@@ -84,7 +84,7 @@ return (
                       </strong>
                       <FaVoteYea
                         className='float-right' 
-                        style={{color: 'purple', cursor: 'pointer', fontSize: '36px' }}
+                        style={{color: '#111111', cursor: 'pointer', fontSize: '36px' }}
                         title={'Vote'}
                         onClick={(e) => showGameVoteForm(e, game)}
                       />

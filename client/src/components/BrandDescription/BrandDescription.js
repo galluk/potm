@@ -1,33 +1,28 @@
 import React from 'react';
+import './style.css';
 
 function BrandDescription() {
     return (
         <div className="p-0 m-0 container-fluid d-flex justify-content-center">
             <div className="p-0 m-0 row">
-                <div className="cardBackground card col-md-9 col-xs-12">
+                <div className="cardBackground card col-md-10 col-xs-12">
                     <div className="card-body">
-                        <h5 className="card-title">About Company</h5>
+                        <h5 className="card-title">About POTM</h5>
                         <p className="card-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed velit quam. Donec
-                            interdum tellus in lacinia convallis. Fusce rutrum ut libero et euismod. Phasellus sed
-                            laoreet magna. Nullam eget urna nisl. Mauris ut placerat lacus. Vivamus dictum rutrum
-                            auctor. Fusce libero felis, efficitur nec eleifend vitae, pharetra eget dolor. Vestibulum
-                            imperdiet ante sed lorem auctor sodales. Aliquam id varius mi. Morbi pulvinar nunc at odio
-                            venenatis, in tincidunt massa luctus. Nullam eu pellentesque mi, id convallis orci. Proin id
-                            quam et eros venenatis gravida nec quis lectus. Nullam congue nisl et odio euismod commodo.
-                            Pellentesque porttitor imperdiet dolor. Maecenas at mollis mauris. Vivamus ultricies pretium
-                            purus, vitae mollis ex interdum sed. Mauris porta tristique augue, eu interdum felis
-                            vestibulum ac. Proin tincidunt tincidunt ultrices. Pellentesque blandit maximus mi, eu
-                            aliquet mauris sagittis sed. Quisque eu consequat lacus. Praesent vestibulum sollicitudin
-                            diam non eleifend. Aliquam efficitur nisi sed risus rhoncus rhoncus. Morbi ultricies nunc
-                            eget nunc iaculis bibendum. Phasellus in ante sem. Vestibulum ante ipsum primis in faucibus
-                            orci luctus et ultrices posuere cubilia curae; Nunc tristique nunc semper nisi varius, ut
-                            pretium mauris dapibus. Quisque scelerisque vel dui non vestibulum.
+                            Player of the match voting is designed to give you a convenient way for your team to determine who the outstanding
+                            player has been for the season. Just get your team admin (or take it on yourself!) to create a team, share the team 
+                            id with everyone else who can then register and join the team.
+                        </p>
+                        <p className="card-text">
+                            You can even vote for yourself!
+                        </p>
+                        <p className="card-text">
+                            But would you?
                         </p>
                     </div>
                 </div>
 
-                <div className="text-center cardBackground card col-md-3 col-xs-12">
+                <div className="text-center cardBackground card col-md-10 col-xs-12">
                     <div className="card-body">
                         <h5 className="card-title">Follow Us!</h5>
                         <a href="/">
@@ -62,6 +57,17 @@ function BrandDescription() {
                         </a>
                     </div>
                 </div>
+                <div className="cardBackground card col-md-10 col-xs-12">
+                    <div className="card-body">
+                        <p className="card-text">
+                            You will vote for yourself, won't you?
+                        </p>
+                        <p className="card-text">
+                            But only because you know there's others in your team who will, right?
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </div>
     );

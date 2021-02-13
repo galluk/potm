@@ -7,25 +7,31 @@ import { createTeam } from '../../../utils/userFunctions';
 function CreateTeam() {
   const seasons = [{ _id: '60135ba0918ca55700d3e408', name: 'Winter 2021' }]
   const [teamName, setTeamName] = useState('')
+  const [teamId, setTeamId] = useState('')
   const [seasonId, setSeasonId] = useState(seasons[0]._id)
+  const [showMessage, setShowMessage] = useState(false)
 
 
   // Handles updating component state when the user types into the input field
   function handleInputChange(event) {
-    const { name, value } = event.target;
-    setTeamName(value)
+    setTeamName(event.target.value)
   };
 
   function handleSelectChange(event) {
-    const { name, value } = event.target;
-    setSeasonId(value)
+    setSeasonId(event.target.value)
   };
+
+  function afterTeamCreated(teamData) {
+    console.log(teamData);
+    setTeamId(teamData._id);
+    setShowMessage(true);
+  }
 
   // When the form is submitted, use the API to add the team
   function handleFormSubmit(event) {
     event.preventDefault();
-    createTeam({ seasonId: seasonId, teamName: teamName })
-        .then(res => console.log(res.data))
+    createTeam({ seasonId: seasonId, name: teamName })
+        .then(res => afterTeamCreated(res.data))
         .catch(err => console.log(err));
   };
 
@@ -35,7 +41,7 @@ function CreateTeam() {
         <Col size="md-12 sm-12">
           <Jumbotron>
             <h1>Create Your Team!</h1>
-            <h5>Select a season, enter a name you're all set</h5>
+            <h5>Select a season, enter a name and you're all set</h5>
           </Jumbotron>
           <form>
             <div>
@@ -59,6 +65,9 @@ function CreateTeam() {
               Create
             </FormBtn>
           </form>
+          <div>
+              {showMessage && <p>Team Created. Please send the following TeamId to your players: {teamId}</p> }
+          </div>
         </Col>
       </Row>
     </Container>
