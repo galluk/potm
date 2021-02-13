@@ -12,6 +12,7 @@ import ManageGames from './components/pages/ManageGames';
 import CreateTeam from './components/pages/CreateTeam';
 import VotingGames from './components/pages/VotingGames';
 import JoinTeam from './components/pages/JoinTeam';
+import TallyBoard from './components/pages/Tallyboard';
 import StartUp from './components/pages/StartUp/StartUp';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AppContextProvider } from './store';
@@ -33,6 +34,7 @@ function App() {
                         <Route exact path="/managegames" component={ManageGames} />
                         <Route exact path="/votingames" component={VotingGames} />
                         <Route exact path="/jointeam" component={JoinTeam} />
+                        <Route exact path="/standings" component={TallyBoard} />
                         <Route exact path="/profile" component={Profile} />
                         <Route exact path="/dashboard" component={Auth(Dashboard)} />
                         <Route exact path="/other" component={Other} />
