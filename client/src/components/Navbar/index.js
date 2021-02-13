@@ -44,6 +44,11 @@ function Navbar() {
                 </Link>
             </li>
             <li>
+                <Link className="mb-1 mr-1 btn btn-sm active" to="/standings">
+                    Standings
+                </Link>
+            </li>
+            <li>
                 <Link className="mb-1 mr-1 btn btn-sm active" to="/dashboard">
                     Dashboard
                 </Link>
@@ -91,6 +96,11 @@ function Navbar() {
             <li>
                 <Link className="mb-1 mr-1 btn btn-sm active" to="/jointeam">
                     Join
+                </Link>
+            </li>
+            <li>
+                <Link className="mb-1 mr-1 btn btn-sm active" to="/standings">
+                    Standings
                 </Link>
             </li>
             <li>

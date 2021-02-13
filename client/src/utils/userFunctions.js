@@ -75,5 +75,5 @@ export const enterPlayerVotes = (votes, gameId) => {
 
 // get all votes for the given teamId
 export const getGameVotesByteam = (id) => {
-    return axios.get('/api/games/votingopen/' + id);
+    return axios.get('/api/voting/gamevotes/' + id);
 };
