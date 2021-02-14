@@ -1,6 +1,8 @@
 import React from 'react';
 import { useAppContext } from '../../store';
 import { useLoginCheck } from '../../utils/setAuthToken';
+import Jumbotron from "../Jumbotron";
+import { Col, Row, Container } from "../Grid";
 
 function Profile() {
     const [authState, appDispatch] = useAppContext();
@@ -10,13 +12,19 @@ function Profile() {
     // get a list of the user's teams
 
     return (
-        <div className="pl-0 m-0 container-fluid">
-            <div className="flex-row-reverse mt-5 mr-5 d-flex">
-                <div className="col-xs-12 col-sm-12 col-md-12 jumbotron jumbotron-fluid cardBackground">
-                    <div className="mx-auto col-sm-8">
-                        <h1 className="text-center">PROFILE</h1>
-                    </div>
-                    <table className="table mx-auto col-md-6">
+        <Container fluid>
+        <Row>
+            <Col size="md-12 sm-12">
+                <Jumbotron>
+                    <h1>Profile</h1>
+                    <h5>About you...</h5>
+                </Jumbotron>
+            </Col>
+        </Row>
+        <Row>
+            <Col size="md-2 sm-0"></Col>
+            <Col size="md-8 sm-12">
+                    <table className="table mx-auto col-md-6" style={{color: "#111111"}}>
                         <tbody>
                             <tr>
                                 <td>Name</td>
@@ -32,9 +40,10 @@ function Profile() {
                             </tr>
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
+                </Col>
+            <Col size="md-2 sm-0"></Col>
+        </Row>   
+    </Container>
     );
 }
 

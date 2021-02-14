@@ -49,6 +49,10 @@ function ManageGames(props) {
         setShowImportGames(true)
     }
 
+    function onCancelImport() {
+        setShowImportGames(false)
+    }
+
     function onCancelForm() {
         setShowEditGame(false)
         setShowAddGame(false)
@@ -116,11 +120,11 @@ function ManageGames(props) {
                 <Col size="md-1 sm-1"></Col>
                 <Col size="md-10 sm-10">
                     <div>
-                        {showImportGames && <ImportGames onImport={importNewGames} />}
-                    </div>
-                    <div>
                         <Button variant="outline-primary" className="float-right" onClick={showImportGamesForm}>Import</Button>
                         <Button color={showAddGame ? 'red' : 'green'} text={showAddGame ? 'Close' : 'Add'} onClick={showGameForm}>Add</Button>
+                    </div>
+                    <div>
+                        {showImportGames && <ImportGames onImport={importNewGames} onCancel={onCancelImport} />}
                     </div>
                     <div>
                         {showAddGame && <AddGame game={{}} newGame={true} onAdd={addNewGame} onEdit={onEditGame} onCancel={onCancelForm} />}

@@ -3,10 +3,14 @@
   display: 'flex';
   border-radius: 2px;
   /* height: 325px; */
-  margin: 1rem;
+  /* margin: 1rem; */
   position: relative;
-  width: 95%;
+  /* width: 95%; */
   box-shadow: 0 3px 6px #999, 0 3px 6px #999;
   text-align: left;
-  padding: 10px;
+  padding: 5px;
+}
+
+.votingOpen.card {
+  background:rgb(49, 99, 0, 0.4);
 }

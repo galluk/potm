@@ -1,6 +1,6 @@
 import { Input, FormBtn } from "../Form";
 
-const ImportGames = ({ onImport }) => {
+const ImportGames = ({ onImport, onCancel }) => {
     let selectedFile = {};
 
     function onSubmit(e) {
@@ -65,17 +65,8 @@ return (
             name="fileName"
             placeholder="Select file to import"
         />
-        <FormBtn
-            type='submit'
-            disabled={!(selectedFile)}
-        // onClick={handleFormSubmit}
-        >
-            Submit
-            </FormBtn>
-        {/* <div className='form-control' class="text-center">
-                <input type='file' accept='csv' onChange={(e) => setFileName(e.target.value)} />
-            </div> 
-            <input type='submit' value='Import File' className='btn btn-block' />*/}
+        <FormBtn onClick={onCancel}>Cancel</FormBtn>        
+        <FormBtn type='submit' disabled={!(selectedFile)}>Submit</FormBtn>
     </form>
 )
 }

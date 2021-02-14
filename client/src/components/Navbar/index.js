@@ -31,6 +31,7 @@ function Navbar() {
             </li>
         </ul>
     );
+
     const adminLink = (
         <ul className="navbar-nav list-group list-group-horizontal">
             <li>
@@ -39,31 +40,23 @@ function Navbar() {
                 </Link>
             </li>
             <li>
-                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
-                    <span class="navbar-toggler-icon"></span>
-                </button>                
-                {/* <button className="navbar-toggler" classType="button" data-toggle="collapse" dataTarget="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button> */}
-            {/* <li> */}
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul className="navbar-nav ml-auto">
-                        <li><Link className="mb-1 mr-1 btn btn-sm active" to="/managegames">
-                            Manage Games
-                            </Link>
-                        </li>
-                        <li>
-                            <Link className="mb-1 mr-1 btn btn-sm active" to="/createteam">
-                                Create Team
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-            {/* </li> */}
-            </li>
-            <li>
                 <Link className="mb-1 mr-1 btn btn-sm active" to="/jointeam">
                     Join
+                </Link>
+            </li>
+            <li>
+                <Link className="mb-1 mr-1 btn btn-sm active" to="/managegames">
+                    Manage Games
+                </Link>
+            </li>
+            <li>
+                <Link className="mb-1 mr-1 btn btn-sm active" to="/createteam">
+                    Create Team
+                </Link>
+            </li>
+            <li>
+                <Link className="mb-1 mr-1 btn btn-sm active" to="/profile">
+                    Profile
                 </Link>
             </li>
             <li>
@@ -74,11 +67,6 @@ function Navbar() {
             <li>
                 <Link className="mb-1 mr-1 btn btn-sm active" to="/votingames">
                     Vote
-                </Link>
-            </li>
-            <li>
-                <Link className="mb-1 mr-1 btn btn-sm active" to="/profile">
-                    Profile
                 </Link>
             </li>
             <li>
@@ -94,6 +82,7 @@ function Navbar() {
             </li>
         </ul>
     );
+
     const userLink = (
         <ul className="navbar-nav list-group list-group-horizontal">
             <li>
@@ -134,6 +123,7 @@ function Navbar() {
             </li>
         </ul>
     );
+
     return (
         <nav className="navbar navbar-expand-lg">
             <div className="collapse navbar-collapse d-flex justify-content-end" id="navbar1">
@@ -141,6 +131,7 @@ function Navbar() {
             </div>
         </nav>
     );
+
 }
 
 export default Navbar;

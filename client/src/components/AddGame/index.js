@@ -1,14 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Input, FormBtn, Checkbox } from "../Form";
 
 const AddGame = ({ game, newGame, onAdd, onEdit, onCancel }) => {
   const [round, setRound] = useState(game.round)
-  const [gameDate, setgameDate] = useState(game.gameDate)
+  const [gameDate, setgameDate] = useState(game.gameDate.slice(0, 10))
   const [opposition, setOpposition] = useState(game.opposition)
   const [venue, setVenue] = useState(game.venue)
   const [votingOpen, setVotingOpen] = useState(game.votingOpen)
 
-  const onSubmit = (e) => {
+const onSubmit = (e) => {
     e.preventDefault()
 
     // do user validation
@@ -74,15 +74,13 @@ const AddGame = ({ game, newGame, onAdd, onEdit, onCancel }) => {
         <Input
           type="checkbox"
           name="votingOpen"
-          value={votingOpen}
+          checked={votingOpen}
           onChange={(e) => setVotingOpen(e.target.checked)}
         />
       </div>
       <div>
         <FormBtn onClick={onCancel}>Cancel</FormBtn>        
         <FormBtn type='submit'>Save Game</FormBtn>        
-        {/* <input type='button' value='Cancel' className='btn pull-right' onClick={onCancel} />
-        <input type='submit' value='Save Game' className='btn pull-right' /> */}
       </div>
     </form>
   )
