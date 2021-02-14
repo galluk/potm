@@ -42,16 +42,13 @@ module.exports = {
     },
     remove: function (req, res) {
         db.Game.findByIdAndDelete(mongoose.Types.ObjectId(`${req.params.id}`))
-            // .then(dbGame => res.json(dbGame))
+            .then((dbGame) => res.json(dbGame))
             .catch((err) => res.status(422).json(err));
     },
-    import: function ({ body }, res) {
+    import: function (req, res) {
         console.log('importing');
-        const games = body.map((game) => {
-            return { ...game, teamId: mongoose.Types.ObjectId(game.teamId) };
-        });
-        console.log(games);
-        db.Game.insertMany(games)
+        console.log(req.body);
+        db.Game.insertMany(req.body)
             .then((dbGames) => { console.log(dbGames); res.json(dbGames) })
             .catch((err) => res.status(422).json(err));
     },
