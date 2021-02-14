@@ -40,6 +40,7 @@
         "passport": "^0.4.1",
         "passport-jwt": "^4.0.0",
         "path": "^0.12.7",
+        "react-fast-marquee": "^1.0.9",
         "react-icons": "^4.1.0",
         "validator": "^13.5.2"
     },

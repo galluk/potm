@@ -15,6 +15,7 @@ import TallyBoard from './components/pages/Tallyboard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AppContextProvider } from './store';
 import Auth from './Auth';
+import SportsTracker from './components/SportsTracker';
 
 import './App.css';
 
@@ -36,6 +37,9 @@ function App() {
                         <Route exact path="/profile" component={Profile} />
                         {/* <Route exact path="/dashboard" component={Auth(Dashboard)} /> */}
                         {/* <Route exact path="/other" component={Other} /> */}
+                    </div>
+                    <div>
+                        <SportsTracker/>
                     </div>
                 </div>
             </Router>
