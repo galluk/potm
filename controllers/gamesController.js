@@ -14,7 +14,7 @@ module.exports = {
             .catch((err) => res.status(422).json(err));
     },
     findByTeamId: function (req, res) {
-        db.Game.find({ teamId: mongoose.Types.ObjectId(`${req.params.id}`) })
+        db.Game.find({ teamId: mongoose.Types.ObjectId(`${req.params.id}`) }, null, { sort: { gameDate: 1 } })
             .then((dbGames) => res.json(dbGames))
             .catch((err) => res.status(422).json(err));
     },
@@ -27,7 +27,7 @@ module.exports = {
                     return mongoose.Types.ObjectId(player.teamId);
                 });
                 // get the games that are open for voting for the given team_ids
-                db.Game.find({ teamId: { $in: team_ids }, votingOpen: true })
+                db.Game.find({ teamId: { $in: team_ids }, votingOpen: true }, null, { sort: { gameDate: 1 } })
                     .then((dbGames) => {
                         res.json(dbGames);
                     })
