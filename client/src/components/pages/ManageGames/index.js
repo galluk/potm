@@ -99,6 +99,7 @@ function ManageGames(props) {
         addGame(newGame)
             .then(res => loadGames())
             .catch(err => console.log(err));
+        setShowAddGame(false);
     }
 
     // show/hide  the game form based on current show
@@ -119,7 +120,7 @@ function ManageGames(props) {
             <Row>
                 <Col size="md-1 sm-1"></Col>
                 <Col size="md-10 sm-10">
-                    <div>
+                    <div style={{paddingBottom:'5px'}}>
                         <Button variant="outline-primary" className="float-right" onClick={showImportGamesForm}>Import</Button>
                         <Button color={showAddGame ? 'red' : 'green'} text={showAddGame ? 'Close' : 'Add'} onClick={showGameForm}>Add</Button>
                     </div>
