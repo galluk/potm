@@ -69,7 +69,7 @@ function EnterVotes({ game, players, loggedId, onEnterVotes}) {
                                     <ListItem key={index}>
                                         <div>
                                         <label>{player.firstName} {player.lastName}</label>
-                                        <select style = {{'float': 'right'}} name={index} onChange={doVoteChange}>
+                                        <select style = {{'float': 'right', 'width': '50px', 'align': 'top'}} name={index} onChange={doVoteChange}>
                                             <option value="" defaultValue></option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
@@ -78,11 +78,10 @@ function EnterVotes({ game, players, loggedId, onEnterVotes}) {
                                         </div>
                                     </ListItem>
                                 )}
-                                <div>
+                                <div style={{textAlign: 'center', paddingTop: '10px'}}>
                                     <label visible='true'>Total votes must add up to 6.</label>
                                 </div>
                                 <FormBtn onClick={handleFormSubmit}>Vote</FormBtn>
-                                {/* <FormBtn onClick={() => onEnterVotes([{playerId: '123456', votes: 2}])}>Vote</FormBtn> */}
                             </form>
                         </List>
                     ) : (

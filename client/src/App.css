@@ -12,8 +12,8 @@
 html, body {
     --hue: var(--hue-neutral);
     /* rgb(243, 255, 229) */
-    background-color: #78f009;
-    /* background-color: #f0ffe3; */
+    /* background-color: #78f009; */
+    background-color: #f0ffe3;
     /* background-color: #ffffff; */
     height: 100%;
     margin: 0;
@@ -58,7 +58,7 @@ table {
 @media screen and (min-width: 225px) {
     /* The body background color will be #ff0000 */
     body {
-        background-color: #ff0000;
+        background-color: #f0ffe3;
     }
 
     /* The container width will be 225px */
@@ -91,7 +91,7 @@ table {
 @media screen and (min-width: 320px) {
     /* The body's bg color will be #4caf50 */
     body {
-      background-color: #4caf50;
+      background-color:#f0ffe3;
     } */
 
     h1 {
@@ -127,11 +127,11 @@ table {
 @media screen and (min-width: 576px) { */
     /* The body's bg color will be #fca203 */
     body {
-      background-color: #fca203;
+      background-color: #f0ffe3;
     }
 
     h1 {
-        font-size: 28px;
+        font-size: px;
     }
 
     p {
@@ -161,7 +161,7 @@ table {
 @media screen and (min-width: 768px) {
     /* The body's bg color will be #e803fc */
     body {
-      background-color: #e803fc;
+      background-color: #f0ffe3;
     }
 
     h1 {
@@ -195,7 +195,7 @@ table {
 @media screen and (min-width: 992px) {
     /* The body's bg color will be #03fcf2 */
     body {
-      background-color: #03fcf2;
+      background-color: #f0ffe3;
     }
 
     h1 {

@@ -84,12 +84,23 @@ function Navbar() {
     );
 
     const userLink = (
-        <ul className="navbar-nav list-group list-group-horizontal">
-            <li>
-                <Link className="mb-1 mr-1 btn btn-sm active" to="/">
-                    Home
-                </Link>
-            </li>
+        
+        <ul className="nav navbar-nav navbar-right list-group list-group-horizontal">
+            {/* <li  class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Go<span class="caret"></span></a>
+            <ul className="dropdown-menu navbar-nav">
+                <li>
+                    <Link className="mb-1 mr-1 btn btn-sm active" to="/">
+                        Home
+                    </Link>
+                </li>
+                <li>
+                    <Link className="mb-1 mr-1 btn btn-sm active" to="/profile">
+                        Profile
+                    </Link>
+                </li>
+            </ul>
+            </li> */}
             <li>
                 <Link className="mb-1 mr-1 btn btn-sm active" to="/jointeam">
                     Join
@@ -103,11 +114,6 @@ function Navbar() {
             <li>
                 <Link className="mb-1 mr-1 btn btn-sm active" to="/votingames">
                     Vote
-                </Link>
-            </li>
-            <li>
-                <Link className="mb-1 mr-1 btn btn-sm active" to="/profile">
-                    Profile
                 </Link>
             </li>
             <li>
@@ -125,8 +131,9 @@ function Navbar() {
     );
 
     return (
-        <nav className="navbar navbar-expand-lg">
-            <div className="collapse navbar-collapse d-flex justify-content-end" id="navbar1">
+        <nav className="navbar navbar-inverse" style={{paddingLeft: '8px', padding: '8px'}}>
+            <div className="container-fluid" style={{paddingLeft: '0px', padding: '0px'}} id="navbar1">
+                <a class="navbar-brand" href="#" style={{color: 'black', paddingLeft: '0px'}}>POTM</a>
                 {!authState.isAuthenticated ? loginRegLink : (authState.user.teamAdmin ? adminLink : userLink)}
             </div>
         </nav>
