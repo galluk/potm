@@ -29,7 +29,10 @@ const GameSchema = new Schema({
         type: String,
         trim: true,
     },
-    votingOpen: Boolean,
+    votingOpen: { 
+        type: Boolean,
+        default: false,
+    },
     votes: [GameVoteSchema],
     // votes: [
     //     {

@@ -3,10 +3,17 @@ import { Input, FormBtn, Checkbox } from "../Form";
 
 const AddGame = ({ game, newGame, onAdd, onEdit, onCancel }) => {
   const [round, setRound] = useState(game.round)
-  const [gameDate, setgameDate] = useState(game.gameDate.slice(0, 10))
+  const [gameDate, setgameDate] = useState('')
   const [opposition, setOpposition] = useState(game.opposition)
   const [venue, setVenue] = useState(game.venue)
   const [votingOpen, setVotingOpen] = useState(game.votingOpen)
+
+  useEffect(() => {
+    if (game.gameDate) {
+      console.log(game.gameDate);
+      setgameDate(game.gameDate.slice(0, 10));
+    }
+  }, [])    
 
 const onSubmit = (e) => {
     e.preventDefault()
