@@ -11,7 +11,7 @@ function SportsTracker() {
     }, [])
 
     function getSportsNews() {
-        let url = 'http://newsapi.org/v2/top-headlines?' +
+        let url = 'https://newsapi.org/v2/top-headlines?' +
             'country=au&category=sports&apiKey=2f5a10ceb2fc41d3ab24f754edacaa49';
         let req = new Request(url);
         fetch(req)
